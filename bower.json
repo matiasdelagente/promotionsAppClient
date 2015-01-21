@@ -1,0 +1,8 @@
+{
+    "name": "Aristides-Admin",
+    "dependencies": {
+        "angular": "latest",
+        "bootstrap":"latest",
+        "jquery":"latest"
+    }
+}
