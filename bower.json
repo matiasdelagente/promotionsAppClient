@@ -3,6 +3,8 @@
     "dependencies": {
         "angular": "latest",
         "bootstrap":"latest",
-        "jquery":"latest"
+        "jquery":"latest",
+		"angular-resource": "latest",
+		"angular-route":"latest"
     }
 }
