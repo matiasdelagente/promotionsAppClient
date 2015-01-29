@@ -2,9 +2,14 @@
  * Created by Administrador on 21/01/2015.
  */
 var ya = angular.module('ya', [
-  'ngRoute',
-  'businessController'
+    'ngRoute',
+    'ngResource',
+    'ya.controllers',
+    'ya.service'
 ]);
+
+var controllers = angular.module('ya.controllers',[]);
+var service = angular.module('ya.service',[]);
 
 ya.config(['$routeProvider',
   function($routeProvider) {

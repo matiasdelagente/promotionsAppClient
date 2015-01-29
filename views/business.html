@@ -1,24 +1,29 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-2">
-      <!--Sidebar content-->
-
-      Search: <input ng-model="query">
-      Sort by:
-      <select ng-model="orderProp">
-        <option value="name">Alphabetical</option>
-      </select>
-
+    <div class="row">
+        <div class="col-md-4">
+            <!--Sidebar content-->
+            Search: <input ng-model="query">
+        </div>
+        <div class="col-md-4">
+            Sort by:
+            <select ng-model="orderProp">
+                <option value="name">Alphabetical</option>
+            </select>
+        </div>
     </div>
-    <div class="col-md-10">
-      <!--Body content-->
-	<table>
-		<tr ng-repeat="business in businesses | filter:query | orderBy:orderProp" class="thumbnail">
-			<td><a href="#/business/{{business._id}}" class="thumb">{{business.name}}</td>
-			<td><img src="img/Image.jpg"></td>
-			<td><a href="#/business/{{business._id}}">{{business.address}}</td>
-		</tr>
-	</table>
-	</div>
-  </div>
+
+    <div class="row">
+        <div class="col-md-10">
+            <!--Body content-->
+            <table class="table table-hover">
+                <tbody>
+                    <tr ng-repeat="business in businesses.result | filter:query | orderBy:orderProp" class="thumbnail">
+                        <td><a href="#/business/{{business._id}}">{{business.name}}</a></td>
+                        <td data-title="Image"><img src="../img/Image.jpg"></td>
+                        <td data-title="Address">{{business.address}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

@@ -1,10 +1,20 @@
-describe('businessCtrl', function(){
+'use strict';
 
-  it('should create "Business" model with 3 business', function() {
-    var scope = {},
-        ctrl = new businessCtrl(scope);
+describe('businessCtrl', function () {
 
-    expect(scope.businesses.length).toBe(3);
-  });
+    beforeEach(module('ya'));
+
+    var businessCtrl, scope;
+
+    beforeEach(inject(function ($controller, $rootScope) {
+        scope = $rootScope.$new();
+        businessCtrl = $controller('businessCtrl', {
+            $scope: scope
+        });
+    }));
+
+    it('should get "Business" model with 5 business', function () {
+        expect(scope.businesses.length).toBe(5);
+    });
 
 });
