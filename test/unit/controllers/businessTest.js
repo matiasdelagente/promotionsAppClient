@@ -4,17 +4,22 @@ describe('businessCtrl', function () {
 
     beforeEach(module('ya'));
 
-    var businessCtrl, scope;
+    var businessCtrl, scope, $httpBackend, service;
 
-    beforeEach(inject(function ($controller, $rootScope) {
+    beforeEach(inject(function (_$httpBackend_, $controller, $rootScope, Business) {
+        $httpBackend = _$httpBackend_;
+
         scope = $rootScope.$new();
+        service = Business;
         businessCtrl = $controller('businessCtrl', {
-            $scope: scope
+            $scope: scope,
+            Business: service
         });
     }));
 
     it('should get "Business" model with 5 business', function () {
-        expect(scope.businesses.length).toBe(5);
+        console.log(service.getAll);
+        expect(scope.businesses.result.length).toBe(5);
     });
 
 });
