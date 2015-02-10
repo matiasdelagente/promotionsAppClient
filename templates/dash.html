@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-md-6 margin-5 bg-danger">
+        <h3>Reservas</h3>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Personas</th>
+                    <th>Tiempo</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="r in reserve.results" ng-class="{warning: r.status == 'Pendiente'}">
+                    <td>{{r.amount}}</td>
+                    <td>{{r.timeOut | date:'hh:mm'}}</td>
+                    <td>{{r.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-5 margin-5 bg-success">
+        <h3>Promociones</h3>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Tipo</th>
+                <th>Vence</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="p in promotion.results" ng-class="{warning: p.status == 'Pendiente'}">
+                <td>{{p.code}}</td>
+                <td>{{p.type}}</td>
+                <td>{{p.expire | date:'dd/MM/YY'}}</td>
+                <td>{{p.status}}</td>
+                <td>{{p.date | date:'dd/MM/YY'}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3 margin-5 bg-primary center">
+        <h3>Disponibilidad</h3>
+        <a href ng-click="availability.plus()" class="btn btn-success pull-left">
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
+        <span class="font-size-42" ng-click="availability.editAmount = true;" ng-if="!availability.editAmount">
+            {{availability.results.amount}}
+        </span>
+        <span ng-if="availability.editAmount">
+            <input type="number"
+                   ng-model="availability.results.amount"
+                   ng-blur="availability.changeAmount();availability.editAmount=false"
+                   class="form-control input-amount" />
+        </span>
+        <a href ng-click="availability.minus()" class="btn btn-success pull-right"><span class="glyphicon glyphicon-minus"></span></a>
+    </div>
+    <div class="col-sm-4 margin-5 bg-warning"></div>
+    <div class="col-sm-3 margin-5 bg-warning"></div>
+</div>
