@@ -15,7 +15,8 @@ services.factory('AvailabilitySvc',[
             $timeout(function(){
                 var response = {success:true,
                     result:{
-                        amount:100
+                        amount:100,
+                        timeOut:3000000
                     }
                 };
                 callback(response.result);

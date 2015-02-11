@@ -6,11 +6,13 @@ var yapp = angular.module('Yapp',[
     'ngSanitize',
     'config',
     'Yapp.controllers',
-    'Yapp.services'
+    'Yapp.services',
+    'Yapp.filters'
 ]);
 
 var controllers = angular.module('Yapp.controllers',[]);
 var services = angular.module('Yapp.services',[]);
+var filters = angular.module('Yapp.filters',[]);
 
 yapp.config([
     '$routeProvider',

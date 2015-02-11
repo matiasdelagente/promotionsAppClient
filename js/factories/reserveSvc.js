@@ -17,7 +17,7 @@ services.factory('ReserveSvc',[
                     success:true,
                     result:[]
                 };
-                for(var i = 0; i < 10; i++){
+                for(var i = 0; i < 5; i++){
                     var r = {
                         device:"123456789",
                         amount:Math.floor((Math.random() * 10) + 1),

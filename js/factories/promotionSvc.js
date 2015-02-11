@@ -17,7 +17,7 @@ services.factory('PromotionSvc',[
                     success:true,
                     result:[]
                 };
-                for(var i = 0; i < 10; i++){
+                for(var i = 0; i < 5; i++){
                     var r = {
                         code:"123456789",
                         type:'2x1',
