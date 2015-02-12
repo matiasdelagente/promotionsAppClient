@@ -11,13 +11,12 @@ services.factory('ReserveSvc',[
         var reserve = {};
 
         reserve.get = function (callback) {
-
             $timeout(function(){
                 var response = {
                     success:true,
                     result:[]
                 };
-                for(var i = 0; i < 5; i++){
+                for(var i = 0; i < 2; i++){
                     var r = {
                         device:"123456789",
                         amount:Math.floor((Math.random() * 10) + 1),
@@ -28,14 +27,28 @@ services.factory('ReserveSvc',[
                 }
                 callback(response.result);
             },300);
+        };
 
-            /*$http.post(ENV.apiEndpoint+'/login', { email: email, password: password })
-                .success(function (response) {
-                    if(response.code !== 200){
-                        response.message = 'Email or password is incorrect';
+        reserve.getSettings = function (callback) {
+            $timeout(function(){
+                var response = {
+                    success:true,
+                    result:{
+                        timeOut:300000
                     }
-                    callback(response.result);
-                });*/
+                };
+                callback(response.result);
+            },300);
+        };
+
+        reserve.setSettings = function (settings,callback) {
+            $timeout(function(){
+                var response = {
+                    success:true,
+                    result:settings
+                };
+                callback(response.result);
+            },300);
         };
 
         return reserve;

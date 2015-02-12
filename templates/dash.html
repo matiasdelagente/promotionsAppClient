@@ -62,22 +62,16 @@
         </div>
         <div class="row bg-primary center margin-top-10">
             <h3>Cuenta Regresiva</h3>
-            <a href ng-click="availability.results.timeOut = availability.results.timeOut + 60000" class="btn btn-success pull-left">
+            <a href ng-click="reserve.settings.plus()" class="btn btn-success pull-left">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
             <span class="font-size-42">
-                {{availability.results.timeOut | msToDate}}
+                {{reserve.settings.results.timeOut | msToDate}}
             </span>
-            <a href ng-click="availability.results.timeOut = availability.results.timeOut - 60000" class="btn btn-success pull-right"><span class="glyphicon glyphicon-minus"></span></a>
+            <a href ng-click="reserve.settings.minus()" class="btn btn-success pull-right">
+                <span class="glyphicon glyphicon-minus"></span>
+            </a>
         </div>
-    </div>
-
-    <div class="col-sm-4 margin-5 bg-warning">
-        <h3>Notificaciones</h3>
-        <label>Titulo</label>
-        <input type="text" ng-model="notification.title" class="form-control" />
-        <label>Description</label>
-        <textarea ng-model="notification.description" class="form-control"></textarea>
     </div>
     <div class="col-sm-3 margin-5 bg-warning"></div>
 </div>
