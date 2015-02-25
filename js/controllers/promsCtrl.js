@@ -8,7 +8,11 @@ controllers.controller('PromsCtrl',[
         $scope.promotion = {}
         $scope.promotion.types = {}
         $scope.promotion.states = {}
+        $scope.form = {}
 
+        $scope.form.show = function(){
+                $scope.form.state = !$scope.form.state;
+        };
 
         PromTypesSvc.get(function(response){
             $scope.promotion.types.results = response;
@@ -16,7 +20,6 @@ controllers.controller('PromsCtrl',[
 
         PromStatesSvc.get(function(response){
             $scope.promotion.states.results = response;
-            console.log(response)
         })
 
         $scope.saveProm = function(prom){
