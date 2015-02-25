@@ -6,31 +6,32 @@
 
         <div class="form-input">
           Codigo
-          <input type="text" class="form-control" id="codigo" ng-model="prom.codigo">
+          <input type="text" class="form-control" id="code" ng-model="prom.code">
         </div>
 
+
         <div class="form-input">
-            Tipo
-            <select id="inputTipo" class="form-control" ng-model="prom.tipo"
-                    ng-options="tipo.nombre as tipo.nombre for tipo in promotion.types.results.data">
-            </select>
+                Tipo
+                <select id="type" name="type" ng-model="prom.type" class="form-control"
+                        ng-options="type as type.name for type in promotion.types.results.data track by type._id" required>
+                </select>
         </div>
 
         <div class="form-input">
             Vence
-            <input type="date" class="form-control" id="vence"  min="2014-10-01" max="2015-12-31" ng-model="prom.vence" ng-model-options="{timezone: 'UTC'}">
+            <input type="date" class="form-control" id="expire"  min="2014-10-01" max="2015-12-31" ng-model="prom.expire" ng-model-options="{timezone: 'UTC'}">
         </div>
 
         <div class="form-input">
             Estado
-            <select id="estado" class="form-control" ng-model="prom.estado"
-                    ng-options="estado.nombre as estado.nombre for estado in estado.data">
+            <select id="state" class="form-control" ng-model="prom.status"
+                    ng-options="status as status.name for status in promotion.states.results.data track by status._id">
             </select>
         </div>
 
         <div class="form-input">
             Fecha
-            <input type="date" class="form-control" id="fecha"  min="2014-10-01" max="2015-12-31" ng-model="prom.fecha" ng-model-options="{timezone: 'UTC'}">
+            <input type="date" class="form-control" id="date"  min="2014-10-01" max="2015-12-31" ng-model="prom.date" ng-model-options="{timezone: 'UTC'}">
         </div>
 
         <div class="form-input">
@@ -41,11 +42,11 @@
   </div>
 
   <div class="col-md-3 margin-5 bg-warning">
-    CODIGO: {{prom.codigo}}     <br>
-    TIPO: {{prom.tipo}}       <br>
-    VENCE: {{prom.vence | date:'dd/MM/yyyy' : 'UTC'}}  <br>
-    ESTADO: {{prom.estado}}     <br>
-    FECHA: {{prom.fecha | date:'dd/MM/yyyy' : 'UTC'}}  <br>
+    CODIGO: {{prom.code}}     <br>
+    TIPO: {{prom.type.name}}       <br>
+    VENCE: {{prom.expire | date:'dd/MM/yyyy' : 'UTC'}}  <br>
+    ESTADO: {{prom.status.name}}     <br>
+    FECHA: {{prom.date | date:'dd/MM/yyyy' : 'UTC'}}  <br>
   </div>
 
 </div>

@@ -1,15 +1,15 @@
 'use strict'
 
-services.factory('PromTypesSvc',[
+services.factory('PromStatesSvc', [
         '$http',
         '$timeout',
-        "ENV",
+        'ENV',
 
         function($http, $timeout, ENV){
 
-                var promTypes = {};
+                var PromStates = {}
 
-                promTypes.get = function(callback){
+                PromStates.get = function(callback){
 
                         $timeout(function(){
                             var response = {
@@ -20,19 +20,19 @@ services.factory('PromTypesSvc',[
                         response.result = {
                                 data: [{
                                         _id: 1,
-                                        name: '2x1'
+                                        name: 'Pendiente'
                                     },
                                     {
                                         _id: 2,
-                                        name: 'Descuento'
+                                        name: 'Activa'
                                     },
                                     {
                                         _id: 3,
-                                        name: 'Obsequio'
+                                        name: 'Vencida'
                                     },
                                     {
                                         _id: 4,
-                                        name: 'Otros'
+                                        name: 'Otro'
                                     }
 
                                 ]
@@ -42,7 +42,6 @@ services.factory('PromTypesSvc',[
                         },300);
                     };
 
-                   return promTypes;
+                   return PromStates;
 
-
-        }]);
+}])
