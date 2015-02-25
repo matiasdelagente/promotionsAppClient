@@ -1,31 +1,11 @@
 controllers.controller('PromsCtrl',[
         '$scope',
         'PromotionSvc',
-        function($scope, PromotionSvc){
+        'PromTypesSvc',
+        function($scope, PromotionSvc, PromTypesSvc){
 
         $scope.promotion = {}
-
-        //TEMPORAL HASTA QUE SE COMPLETE LA API
-        $scope.tipos = {
-                data: [{
-                        id: 1,
-                        nombre: '2x1'
-                    },
-                    {
-                        id: 2,
-                        nombre: 'Descuento'
-                    },
-                    {
-                        id: 3,
-                        nombre: 'Obsequio'
-                    },
-                    {
-                        id: 4,
-                        nombre: 'Otros'
-                    }
-
-                ]
-        };
+        $scope.promotion.types = {}
 
         $scope.estado = {
                 data: [{
@@ -48,17 +28,21 @@ controllers.controller('PromsCtrl',[
                 ]
         };
 
+        PromTypesSvc.get(function(response){
+            $scope.promotion.types.results = response;
+        });
+
         $scope.saveProm = function(prom){
           PromotionSvc.save(prom);
           PromotionSvc.all(function(response){
-            $scope.promotion.results = response
-            console.log ('hola')
+                $scope.promotion.results = response
           });
 
         }
 
-        PromotionSvc.all(function(response){
+        PromotionSvc.get(function(response){
           $scope.promotion.results = response
         });
+
 
   }])
