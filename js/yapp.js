@@ -30,6 +30,10 @@ yapp.config([
                 templateUrl: 'templates/dash.html',
                 controller: 'DashCtrl'
             })
+            .when('/proms',{
+                templateUrl: 'templates/proms.html',
+                controller: 'PromsCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });

@@ -8,7 +8,30 @@ services.factory('PromotionSvc',[
     function ($http, $timeout, ENV) {
 
         //namespace
-        var promotion = {};
+        var promotion = {
+          list : []
+        };
+
+
+        promotion.save = function (promo) {
+
+            promotion.list.push(promo);
+
+        }
+
+        promotion.all = function (callback) {
+
+                $timeout(function(){
+                        var response = {
+                            success:true,
+                            result:[]
+                        };
+                        response.result.push(promotion.list)
+                        
+                        callback(response.result);
+                },300);
+
+        }
 
         promotion.get = function (callback) {
 
