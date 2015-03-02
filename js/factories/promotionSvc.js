@@ -19,18 +19,11 @@ services.factory('PromotionSvc',[
 
         }
 
-        promotion.all = function (callback) {
+        promotion.delete = function() {
+        }
 
-                $timeout(function(){
-                        var response = {
-                            success:true,
-                            result:[]
-                        };
-                        response.result.push(promotion.list)
-                        
-                        callback(response.result);
-                },300);
-
+        promotion.edit = function() {
+                
         }
 
         promotion.get = function (callback) {
@@ -43,9 +36,9 @@ services.factory('PromotionSvc',[
                 for(var i = 0; i < 2; i++){
                     var r = {
                         code:"123456789",
-                        type:'2x1',
+                        type:{name:'2x1'},
                         expire:new Date(),
-                        status:'Pendiente',
+                        status: {name:'Pendiente'},
                         date:new Date()
                     };
                     response.result.push(r)

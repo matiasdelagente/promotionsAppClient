@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-6 margin-5 bg-success">
     <h3>Agregar Promo<h3>
-      <form role="form" ng-submit="saveProm(prom)">
+      <form role="form" ng-submit="save(prom)">
 
 
         <div class="form-input">
@@ -9,7 +9,7 @@
           <input type="text" class="form-control" id="code" ng-model="prom.code">
         </div>
         <br>
-        
+
         <div class="form-input">
                 <label for="type">Tipo</label>
                 <select id="type" name="type" ng-model="prom.type" class="form-control"
@@ -39,7 +39,15 @@
         <br>
 
         <div class="form-input">
-            <button type="submit" class="btn btn-primary">Crear Promocion</button>
+            <label>Imagen</label>
+            <div class="btn" name="file" id="file" ng-file-select ng-file-change="upload($files)">Seleccionar una imagen</div>
+            <button ng-click="sendFile()">UPLOAD</button>
+        </div>
+        <br>
+
+        <div class="form-input">
+            <button type="submit" class="btn btn-primary" ng-if="form.type=='create'">Crear Promocion</button>
+            <button type="submit" class="btn btn-primary" ng-if="form.type=='edit'">Editar Promocion</button>
         </div>
 
       </form>
@@ -51,6 +59,7 @@
     VENCE: {{prom.expire | date:'dd/MM/yyyy' : 'UTC'}}  <br>
     ESTADO: {{prom.status.name}}     <br>
     FECHA: {{prom.date | date:'dd/MM/yyyy' : 'UTC'}}  <br>
+    IMAGEN: <img ng-src="data:image/jpg;base64,{{file}}"/>
   </div>
 
 </div>
