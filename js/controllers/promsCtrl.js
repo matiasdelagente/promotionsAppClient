@@ -35,15 +35,21 @@ controllers.controller('PromsCtrl',[
         }
 
         $scope.save = function(prom){
-                PromotionSvc.save(prom);
-                $scope.promotion.results.push(prom);
-                $scope.form.state = !$scope.form.state
+                if($scope.form.type = "create"){
+                        PromotionSvc.save(prom);
+                        $scope.promotion.results.push(prom);
+                        $scope.form.state = !$scope.form.state
+                }
+                else{
+                        PromotionSvc.edit(prom);
+                        
+                }
                 $scope.prom = {};
         }
 
         $scope.edit = function(prom){
                 PromotionSvc.edit(prom);
-                
+
         }
 
         $scope.promotion.editForm = function(index){

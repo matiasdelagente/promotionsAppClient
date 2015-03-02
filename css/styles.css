@@ -18,3 +18,40 @@
 .margin-top-10{
     margin-top: 10px;
 }
+/* Estilos Promociones*/
+
+#promForm{
+
+}
+
+#promPreview{
+    top: 100px;
+    height: 480px;
+    width: 270px;
+    background: url(../img/mobile_preview.png) 0 0 no-repeat #504851;
+    background-size: contain;
+    position: relative;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #fff
+}
+
+#prom-name{
+    position: absolute;
+    top: 27px;
+    left: 50px;
+    font-weight: 900;
+}
+
+#prom-container-type{
+    top: 206px;
+    left: 0px;
+    height: 111px;
+    position: relative;
+    padding-top: 35px;
+}
+
+#prom-type{
+    color: #2AFFA6;
+    font-size: 25px;
+    font-weight: 600;
+}

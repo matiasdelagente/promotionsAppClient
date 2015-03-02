@@ -1,16 +1,16 @@
 <div class="row">
-  <div class="col-md-6 margin-5 bg-success">
+  <div id='promForm' class="col-md-6">
     <h3>Agregar Promo<h3>
       <form role="form" ng-submit="save(prom)">
 
 
-        <div class="form-input">
+        <div class="form-group">
           <label for="code">Codigo</label>
           <input type="text" class="form-control" id="code" ng-model="prom.code">
         </div>
         <br>
 
-        <div class="form-input">
+        <div class="form-group">
                 <label for="type">Tipo</label>
                 <select id="type" name="type" ng-model="prom.type" class="form-control"
                         ng-options="type as type.name for type in promotion.types.results.data track by type._id" required>
@@ -18,13 +18,13 @@
         </div>
         <br>
 
-        <div class="form-input">
+        <div class="form-group">
             <label for="expire">Vence</label>
             <input type="date" class="form-control" id="expire"  min="2014-10-01" max="2015-12-31" ng-model="prom.expire" ng-model-options="{timezone: 'UTC'}">
         </div>
         <br>
 
-        <div class="form-input">
+        <div class="form-group">
             <label for="status">Estado</label>
             <select id="status" class="form-control" ng-model="prom.status"
                     ng-options="status as status.name for status in promotion.states.results.data track by status._id">
@@ -32,34 +32,31 @@
         </div>
         <br>
 
-        <div class="form-input">
+        <div class="form-group">
             <label for="date">Fecha</label>
             <input type="date" class="form-control" id="date"  min="2014-10-01" max="2015-12-31" ng-model="prom.date" ng-model-options="{timezone: 'UTC'}">
         </div>
         <br>
 
-        <div class="form-input">
+        <div class="form-group">
             <label>Imagen</label>
             <div class="btn" name="file" id="file" ng-file-select ng-file-change="upload($files)">Seleccionar una imagen</div>
             <button ng-click="sendFile()">UPLOAD</button>
         </div>
         <br>
 
-        <div class="form-input">
-            <button type="submit" class="btn btn-primary" ng-if="form.type=='create'">Crear Promocion</button>
+        <div class="form-group">
             <button type="submit" class="btn btn-primary" ng-if="form.type=='edit'">Editar Promocion</button>
+            <button type="submit" class="btn btn-primary" ng-if="form.type=='create'">Crear Promocion</button>
         </div>
 
       </form>
   </div>
 
-  <div class="col-md-3 margin-5 bg-warning">
-    CODIGO: {{prom.code}}     <br>
-    TIPO: {{prom.type.name}}       <br>
-    VENCE: {{prom.expire | date:'dd/MM/yyyy' : 'UTC'}}  <br>
-    ESTADO: {{prom.status.name}}     <br>
-    FECHA: {{prom.date | date:'dd/MM/yyyy' : 'UTC'}}  <br>
-    IMAGEN: <img ng-src="data:image/jpg;base64,{{file}}"/>
+  <div id='promPreview' class="col-md-3 col-md-offset-1">
+    <span id='prom-name'>{{prom.code}}</span>
+    <div id='prom-container-type' class='text-center'><span id='prom-type'>{{prom.type.name}}</span></div>
+    <img ng-src="data:image/jpg;base64,{{file}}"/>
   </div>
 
 </div>
