@@ -1,0 +1,63 @@
+<div class="row">
+  <div id='businessForm' class="col-md-6">
+    <h3>Agregar Negocio<h3>
+      <form role="form" ng-submit="save(business)">
+
+
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input type="text" class="form-control" id="name" ng-model="business.name">
+        </div>
+        <br>
+
+        <div class="form-group">
+                <label for="address">Direccion</label>
+                <input type="text" class="form-control" id="address" ng-model="business.address">
+              </div>
+              <br>
+
+        <div class="form-group">
+            <label for="phone">Telefono</label>
+            <input type="number" class="form-control" id="phone" ng-model="business.phone">
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label for="facebook">Facebook</label>
+            <input type="text" class="form-control" id="facebook" ng-model="business.facebook">
+          </div>
+          <br>
+        <br>
+
+        <div class="form-group">
+            <label for="web">Web</label>
+            <input type="text" class="form-control" id="web" ng-model="business.web">
+        </div>
+        <br>
+
+        <div class="form-group">
+            <label>Imagen</label>
+            <div class="btn" name="file" id="file" ng-file-select ng-file-change="upload($files)">Seleccionar una imagen</div>
+            <button ng-click="sendFile()">UPLOAD</button>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" ng-if="form.type=='edit'">Editar Negocio</button>
+            <button type="submit" class="btn btn-primary" ng-if="form.type=='create'">Crear Negocio</button>
+        </div>
+
+      </form>
+  </div>
+
+  <div id='businessPreview' class="col-md-3 col-md-offset-1">
+    <span id='business-name'>{{business.name}}</span>
+    <span id='business-address'>{{business.address}}</span>
+    <span id='business-phone'>{{business.phone}}</span>
+    <span id='business-phone'>{{business.facebook}}</span>
+    <span id='business-phone'>{{business.web}}</span>
+
+    <img ng-src="{{file}}" ng-type=".jpeg"/>
+  </div>
+
+</div>

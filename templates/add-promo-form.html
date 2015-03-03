@@ -56,7 +56,7 @@
   <div id='promPreview' class="col-md-3 col-md-offset-1">
     <span id='prom-name'>{{prom.code}}</span>
     <div id='prom-container-type' class='text-center'><span id='prom-type'>{{prom.type.name}}</span></div>
-    <img ng-src="data:image/jpg;base64,{{file}}"/>
+    <img ng-src="{{file}" ng-type=".jpeg"/>
   </div>
 
 </div>

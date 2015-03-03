@@ -3,7 +3,8 @@ controllers.controller('PromsCtrl',[
         'PromotionSvc',
         'PromTypesSvc',
         'PromStatesSvc',
-        function($scope, PromotionSvc, PromTypesSvc, PromStatesSvc){
+        '$upload',
+        function($scope, PromotionSvc, PromTypesSvc, PromStatesSvc, $upload){
 
         $scope.promotion = {}
         $scope.promotion.types = {}
@@ -11,16 +12,18 @@ controllers.controller('PromsCtrl',[
         $scope.prom = {};
         $scope.form = {};
 
-        $scope.upload = function (files) {
+        $scope.upload2 = function (files) {
             if (!files || files.length <= 0) {
                 return;
             }
+
             $scope.file = files[0];
+            console.log($scope.file)
         };
 
         $scope.sendFile = function(){
                 $scope.prom.file = $scope.file;
-                console.log($scope.file)
+                //console.log($scope.file)
         }
 
         $scope.form.show = function(){
@@ -42,7 +45,7 @@ controllers.controller('PromsCtrl',[
                 }
                 else{
                         PromotionSvc.edit(prom);
-                        
+
                 }
                 $scope.prom = {};
         }
