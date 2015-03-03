@@ -23,17 +23,26 @@ controllers.controller('BusinessCtrl',[
             console.log(index);
         }
 
-        $scope.save = function(business){
-            if($scope.form.type = "create"){
+        $scope.business.save = function(business){
+            if($scope.form.type == "create"){
                 //BusinessSvc.save(business);
                 $scope.business.results.push(business);
                 $scope.form.state = !$scope.form.state
+                console.log("tito")
             }
             else{
-                //BusinessSvc.edit(business);
+                console.log($scope.business.index)
+                $scope.form.state = !$scope.form.state
+                $scope.business.results[$scope.business.index] = business
             }
 
-                $scope.business.new = {};
+        }
+
+        $scope.business.editForm = function(index){
+            $scope.business.index = index
+            $scope.form.state = true;
+            $scope.form.type = "edit";
+            $scope.business.new = $scope.business.results[index]
         }
 
         BusinessSvc.get(function(response){

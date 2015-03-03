@@ -21,7 +21,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr ng-repeat="p in business.results">
+          <tr ng-repeat="p in business.results track by $index">
               <td>{{p.name}}</td>
               <td>{{p.adress}}</td>
               <td>{{p.phone}}</td>

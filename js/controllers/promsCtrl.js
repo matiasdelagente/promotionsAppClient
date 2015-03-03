@@ -56,7 +56,6 @@ controllers.controller('PromsCtrl',[
         }
 
         $scope.promotion.editForm = function(index){
-                PromotionSvc.edit();
                 $scope.form.state = true;
                 $scope.form.type = "edit";
                 $scope.prom = $scope.promotion.results[index]
