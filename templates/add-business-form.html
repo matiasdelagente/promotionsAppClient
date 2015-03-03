@@ -1,37 +1,37 @@
 <div class="row">
   <div id='businessForm' class="col-md-6">
     <h3>Agregar Negocio<h3>
-      <form role="form" ng-submit="save(business)">
+      <form role="form" ng-submit="save(business.new)">
 
 
         <div class="form-group">
           <label for="name">Nombre</label>
-          <input type="text" class="form-control" id="name" ng-model="business.name">
+          <input type="text" class="form-control" id="name" ng-model="business.new.name">
         </div>
         <br>
 
         <div class="form-group">
                 <label for="address">Direccion</label>
-                <input type="text" class="form-control" id="address" ng-model="business.address">
+                <input type="text" class="form-control" id="address" ng-model="business.new.address">
               </div>
               <br>
 
         <div class="form-group">
             <label for="phone">Telefono</label>
-            <input type="number" class="form-control" id="phone" ng-model="business.phone">
+            <input type="number" class="form-control" id="phone" ng-model="business.new.phone">
         </div>
         <br>
 
         <div class="form-group">
             <label for="facebook">Facebook</label>
-            <input type="text" class="form-control" id="facebook" ng-model="business.facebook">
+            <input type="text" class="form-control" id="facebook" ng-model="business.new.facebook">
           </div>
           <br>
         <br>
 
         <div class="form-group">
             <label for="web">Web</label>
-            <input type="text" class="form-control" id="web" ng-model="business.web">
+            <input type="text" class="form-control" id="web" ng-model="business.new.web">
         </div>
         <br>
 
@@ -51,11 +51,11 @@
   </div>
 
   <div id='businessPreview' class="col-md-3 col-md-offset-1">
-    <span id='business-name'>{{business.name}}</span>
-    <span id='business-address'>{{business.address}}</span>
-    <span id='business-phone'>{{business.phone}}</span>
-    <span id='business-phone'>{{business.facebook}}</span>
-    <span id='business-phone'>{{business.web}}</span>
+    <span id='business-name'>{{business.new.name}}</span>
+    <span id='business-address'>{{business.new.address}}</span>
+    <span id='business-phone'>{{business.new.phone}}</span>
+    <span id='business-phone'>{{business.new.facebook}}</span>
+    <span id='business-phone'>{{business.new.web}}</span>
 
     <img ng-src="{{file}}" ng-type=".jpeg"/>
   </div>

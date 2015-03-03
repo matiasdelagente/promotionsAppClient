@@ -32,7 +32,7 @@ controllers.controller('PromsCtrl',[
         };
 
         $scope.promotion.delete = function(index){
-                PromotionSvc.delete($scope.promotion.result[index]);
+                PromotionSvc.delete($scope.promotion.results[index]);
                 $scope.promotion.results.splice(index,1);
                 console.log(index);
         }

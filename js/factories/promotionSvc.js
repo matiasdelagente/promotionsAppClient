@@ -15,7 +15,7 @@ services.factory('PromotionSvc',[
 
         promotion.save = function (promo) {
 
-            promotion.list.push(promo);
+            this.list.push(promo);
 
         }
 
@@ -23,7 +23,7 @@ services.factory('PromotionSvc',[
         }
 
         promotion.edit = function() {
-                
+
         }
 
         promotion.get = function (callback) {

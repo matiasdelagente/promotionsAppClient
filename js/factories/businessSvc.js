@@ -13,7 +13,7 @@ services.factory('BusinessSvc',[
 
         business.save = function (business) {
 
-            business.list.push(business);
+            this.list.push(business);
 
         }
 
