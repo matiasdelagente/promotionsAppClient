@@ -26,7 +26,6 @@
             <label for="facebook">Facebook</label>
             <input type="text" class="form-control" id="facebook" ng-model="business.new.facebook">
           </div>
-          <br>
         <br>
 
         <div class="form-group">
@@ -51,11 +50,17 @@
   </div>
 
   <div id='businessPreview' class="col-md-3 col-md-offset-1">
-    <span id='business-name'>{{business.new.name}}</span>
-    <span id='business-address'>{{business.new.address}}</span>
-    <span id='business-phone'>{{business.new.phone}}</span>
-    <span id='business-phone'>{{business.new.facebook}}</span>
-    <span id='business-phone'>{{business.new.web}}</span>
+    <span id='preview-name'>{{business.new.name}}</span>
+    <div id='business-container' >
+        <label>Direcci&oacute;n</label>
+        <span class="business-info" id='preview-address'>{{business.new.address}}</span>
+        <label>Tel&eacute;fono</label>
+        <span  class="business-info" id='business-phone'>{{business.new.phone}}</span>
+        <label>Facebook</label>
+        <span  class="business-info" id='business-facebook'>{{business.new.facebook}}</span>
+        <label>Web</label>
+        <span  class="business-info" id='business-web'>{{business.new.web}}</span>
+    </div>
 
     <img ng-src="{{file}}" ng-type=".jpeg"/>
   </div>

@@ -28,7 +28,6 @@ controllers.controller('BusinessCtrl',[
                 //BusinessSvc.save(business);
                 $scope.business.results.push(business);
                 $scope.form.state = !$scope.form.state
-                console.log("tito")
             }
             else{
                 console.log($scope.business.index)
