@@ -39,6 +39,10 @@ yapp.config([
                 templateUrl: 'templates/business.html',
                 controller: 'BusinessCtrl'
             })
+            .when('/users',{
+                templateUrl: 'templates/users.html',
+                controller: 'UsersCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });
