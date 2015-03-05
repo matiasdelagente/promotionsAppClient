@@ -1,12 +1,14 @@
+<div class='row' >
 <button ng-click='form.show()'>
         <p ng-if="!form.state">Agregar Negocio<p><p ng-if="form.state">Ocultar<p>
 </button>
+</div>
 
 <div ng-if="form.state" ng-include="'./templates/add-business-form.html'">
 </div>
 
-<div class="row">
-  <div class="col-md-8 margin-5 bg-success">
+<div class="row ">
+  <div class="col-md-10 col-md-offset-1 bg-success">
       <h3>Negocios</h3>
       <table class="table table-striped table-hover">
           <thead>

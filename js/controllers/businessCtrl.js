@@ -28,11 +28,13 @@ controllers.controller('BusinessCtrl',[
                 //BusinessSvc.save(business);
                 $scope.business.results.push(business);
                 $scope.form.state = !$scope.form.state
+                $scope.business.new = {};
             }
             else{
                 console.log($scope.business.index)
                 $scope.form.state = !$scope.form.state
                 $scope.business.results[$scope.business.index] = business
+                $scope.business.new = {};
             }
 
         }
