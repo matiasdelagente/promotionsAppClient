@@ -12,39 +12,32 @@ services.factory('PromotionSvc',[
           list : []
         };
 
-
-        promotion.save = function (promo) {
-
-            this.list.push(promo);
-
+        promotion.save = function (promotion) {
+            $http.post(ENV.apiEndpoint+'/promotion', promotion)
+                .success(function(response){
+                    console.log(promotion);
+                });
         }
 
-        promotion.delete = function() {
+        promotion.delete = function(promotion) {
+            $http.delete(ENV.apiEndpoint+'/promotion'+promotion._id)
+                .success(function(response){
+                    console.log(response);
+                });
         }
 
-        promotion.edit = function() {
-
+        promotion.edit = function(promotion) {
+            $http.put(ENV.apiEndpoint+'/promotions'+promotion._id, promotion)
+                .success(function(response){
+                    console.log(response.result);
+                });
         }
 
         promotion.get = function (callback) {
-
-            $timeout(function(){
-                var response = {
-                    success:true,
-                    result:[]
-                };
-                for(var i = 0; i < 2; i++){
-                    var r = {
-                        code:"123456789",
-                        type:{name:'2x1'},
-                        expire:new Date(),
-                        status: {name:'Pendiente'},
-                        date:new Date()
-                    };
-                    response.result.push(r)
-                }
-                callback(response.result);
-            },300);
+            $http.get(ENV.apiEndpoint+'/promotions')
+                .success(function(response){
+                    callback(response.result);
+                });
         };
 
         return promotion;
