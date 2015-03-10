@@ -12,39 +12,32 @@ services.factory('UserSvc',[
 
 
         user.save = function (user) {
-
-            this.list.push(user);
-
+            $http.post(ENV.apiEndpoint+'/user', user)
+                .success(function(response){
+                    console.log(user);
+                });
         }
 
-        user.delete = function() {
+        user.delete = function(user) {
+            $http.delete(ENV.apiEndpoint+'/user'+user._id)
+                .success(function(response){
+                    console.log(response);
+                });
         }
 
-        user.edit = function() {
-
+        user.edit = function(user) {
+            $http.put(ENV.apiEndpoint+'/user'+user._id, user)
+                .success(function(response){
+                    console.log(response.result);
+                });
         }
 
         user.get = function (callback) {
-
-            $timeout(function(){
-                var response = {
-                    success:true,
-                    result:[]
-                };
-                for(var i = 0; i < 2; i++){
-                    var r = {
-                        name:" prueba inc.",
-                        negocio: {
-                            name: "Ferreteria Lito"
-                        }
-                    };
-                    response.result.push(r)
-                }
-                callback(response.result);
-            },300);
+            $http.get(ENV.apiEndpoint+'/user')
+                .success(function(response){
+                    callback(response.result);
+                });
         };
-
-        return user;
 
     }
 ])
