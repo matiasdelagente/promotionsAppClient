@@ -30,6 +30,10 @@ yapp.config([
                 templateUrl: 'templates/dash.html',
                 controller: 'DashCtrl'
             })
+            .when('/configuraciones', {
+                templateUrl: 'templates/settings.html',
+                controller: 'SettingsCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });

@@ -1,0 +1,37 @@
+<h3>Settings</h3>
+
+<div class="row">
+    <div class="col-md-6">
+        <h4>Edite su perfil</h4>
+        <form name="settings.form" role="form" ng-submit="settings.edit()" class="form">
+            <div class="form-group">
+                <label for="name">Nombre del negocio</label>
+                <input type="text" name="name" id="name" ng-model="settings.business.name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="description">Descripción</label>
+                <textarea name="description" id="description" ng-model="settings.business.description" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="category">Categoria</label>
+                <select id="category" name="category"
+                        ng-model="settings.business.category" class="form-control"
+                        ng-options="category.name for category in categories track by category._id"></select>
+            </div>
+            <h4>Datos de contacto</h4>
+            <div class="form-group">
+                <label for="zone">Zona</label>
+                <select id="zone" name="zone"
+                        ng-model="settings.business.zone" class="form-control"
+                        ng-options="zone.name for zone in zones track by zone._id"></select>
+            </div>
+            <div class="form-group">
+                <label for="address">Dirección</label>
+                <input type="text" name="address" id="address" ng-model="settings.business.name" class="form-control" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <h4>Vista previa de su perfil</h4>
+    </div>
+</div>
