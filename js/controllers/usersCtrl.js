@@ -2,7 +2,7 @@ controllers.controller('UsersCtrl',[
     '$scope',
     '$timeout',
     'UserSvc',
-    function($scope, $timeout, UserSvc){
+    function($scope, $timeout,UserSvc){
 
         $scope.user = {}
         $scope.form = {};

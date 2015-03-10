@@ -20,18 +20,17 @@ controllers.controller('BusinessCtrl',[
         $scope.business.delete = function(index){
             BusinessSvc.delete($scope.business.results[index]);
             $scope.business.results.splice(index,1);
-            console.log(index);
         }
 
         $scope.business.save = function(business){
             if($scope.form.type == "create"){
-                //BusinessSvc.save(business);
+                BusinessSvc.save(business);
                 $scope.business.results.push(business);
                 $scope.form.state = !$scope.form.state
                 $scope.business.new = {};
             }
             else{
-                console.log($scope.business.index)
+                BusinessSvc.edit(business);
                 $scope.form.state = !$scope.form.state
                 $scope.business.results[$scope.business.index] = business
                 $scope.business.new = {};

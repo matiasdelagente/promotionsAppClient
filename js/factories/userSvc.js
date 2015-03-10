@@ -10,7 +10,6 @@ services.factory('UserSvc',[
           list : []
         };
 
-
         user.save = function (user) {
             $http.post(ENV.apiEndpoint+'/user', user)
                 .success(function(response){
@@ -38,6 +37,8 @@ services.factory('UserSvc',[
                     callback(response.result);
                 });
         };
+
+        return user;
 
     }
 ])

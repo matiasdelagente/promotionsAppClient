@@ -10,39 +10,32 @@ services.factory('BusinessSvc',[
           list : []
         };
 
-
         business.save = function (business) {
-
-            this.list.push(business);
-
+            $http.post(ENV.apiEndpoint+'/business', business)
+                .success(function(response){
+                    console.log(business);
+                });
         }
 
-        business.delete = function() {
+        business.delete = function(business) {
+            $http.delete(ENV.apiEndpoint+'/business/'+business._id)
+                .success(function(response){
+                    console.log(ENV.apiEndpoint+'/business/'+business._id);
+                });
         }
 
-        business.edit = function() {
-
+        business.edit = function(business) {
+            $http.put(ENV.apiEndpoint+'/business/'+business._id, business)
+                .success(function(response){
+                    console.log(response.result);
+                });
         }
 
         business.get = function (callback) {
-
-            $timeout(function(){
-                var response = {
-                    success:true,
-                    result:[]
-                };
-                for(var i = 0; i < 2; i++){
-                    var r = {
-                        name:" prueba inc.",
-                        address: 'avenida siempre viva',
-                        phone: 155123456,
-                        facebook: 'facebook/prueba',
-                        web: 'www.prueba.com'
-                    };
-                    response.result.push(r)
-                }
-                callback(response.result);
-            },300);
+            $http.get(ENV.apiEndpoint+'/businesses')
+                .success(function(response){
+                    callback(response.result);
+                });
         };
 
         return business;
