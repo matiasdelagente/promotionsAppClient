@@ -1,0 +1,32 @@
+<button ng-click='form.show()'>
+        <p ng-if="!form.state">Agregar Usuario<p><p ng-if="form.state">Ocultar<p>
+</button>
+
+<div ng-if="form.state" ng-include="'./templates/add-user-form.html'">
+
+</div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1 bg-success">
+      <h3>Usuarios</h3>
+      <table class="table table-striped table-hover">
+          <thead>
+          <tr>
+              <th>nombre</th>
+              <th>negocio</th>
+
+              <th>Editar</th>
+              <th>Eliminar</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="p in user.results">
+              <td>{{p.name}}</td>
+              <td>{{p.business.name}}</td>
+              <td><button ng-click='user.editForm($index)'>Editar</button></td>
+              <td><button ng-click='user.delete($index)'>Eliminar</button></td>
+          </tr>
+          </tbody>
+      </table>
+  </div>
+</div>

@@ -5,6 +5,7 @@ var yapp = angular.module('Yapp',[
     'summernote',
     'ngSanitize',
     'config',
+    'angularFileUpload',
     'Yapp.controllers',
     'Yapp.services',
     'Yapp.filters'
@@ -33,6 +34,18 @@ yapp.config([
             .when('/configuraciones', {
                 templateUrl: 'templates/settings.html',
                 controller: 'SettingsCtrl'
+            })
+            .when('/proms',{
+                templateUrl: 'templates/proms.html',
+                controller: 'PromsCtrl'
+            })
+            .when('/business',{
+                templateUrl: 'templates/business.html',
+                controller: 'BusinessCtrl'
+            })
+            .when('/users',{
+                templateUrl: 'templates/users.html',
+                controller: 'UsersCtrl'
             })
             .otherwise({
                 redirectTo: '/'

@@ -7,7 +7,7 @@ controllers.controller('MenuCtrl',[
 
         $scope.menu = {};
         $scope.menu.loged = false;
-        $scope.menu.isAdmin = false;
+        $scope.menu.isAdmin = true;
 
         $scope.$on('menu',function(ev,message){
             $scope.menu.loged = message.show;
