@@ -20,12 +20,13 @@ controllers.controller('UsersCtrl',[
 
         $scope.user.save = function(user){
             if($scope.form.type == "create"){
-                //BusinessSvc.save(user);
+                UserSvc.save(user);
                 $scope.user.results.push(user);
                 $scope.form.state = !$scope.form.state
                 $scope.user.new = {}
             }
             else{
+                UserSvc.edit(user)
                 $scope.form.state = !$scope.form.state
                 $scope.user.results[$scope.user.index] = user
                 $scope.user.new = {}
