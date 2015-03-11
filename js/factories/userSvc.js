@@ -18,14 +18,14 @@ services.factory('UserSvc',[
         }
 
         user.delete = function(user) {
-            $http.delete(ENV.apiEndpoint+'/user'+user._id)
+            $http.delete(ENV.apiEndpoint+'/user/'+user._id)
                 .success(function(response){
                     console.log(response);
                 });
         }
 
         user.edit = function(user) {
-            $http.put(ENV.apiEndpoint+'/user'+user._id, user)
+            $http.put(ENV.apiEndpoint+'/user/'+user._id, user)
                 .success(function(response){
                     console.log(response.result);
                 });
