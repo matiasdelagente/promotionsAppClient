@@ -2,9 +2,11 @@ controllers.controller('UsersCtrl',[
     '$scope',
     '$timeout',
     'UserSvc',
-    function($scope, $timeout,UserSvc){
+    'BusinessSvc',
+    function($scope, $timeout,UserSvc,BusinessSvc){
 
         $scope.user = {}
+        $scope.business = {}
         $scope.form = {};
 
         $scope.form.show = function(){
@@ -45,5 +47,11 @@ controllers.controller('UsersCtrl',[
         UserSvc.get(function(response){
             $scope.user.results = response
         })
+
+        BusinessSvc.get(function(response){
+            $scope.business.results = response
+            console.log(response)
+        })
+
     }
 ])

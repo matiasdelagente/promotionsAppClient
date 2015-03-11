@@ -20,14 +20,12 @@ services.factory('BusinessSvc',[
         business.delete = function(business) {
             $http.delete(ENV.apiEndpoint+'/business/'+business._id)
                 .success(function(response){
-                    console.log(ENV.apiEndpoint+'/business/'+business._id);
                 });
         }
 
         business.edit = function(business) {
             $http.put(ENV.apiEndpoint+'/business/'+business._id, business)
                 .success(function(response){
-                    console.log(response.result);
                 });
         }
 

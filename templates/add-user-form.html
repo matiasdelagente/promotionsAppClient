@@ -18,8 +18,8 @@
 
         <div class="form-group">
             <label for="business">Negocio</label>
-            <select id="business" class="form-control" ng-model="user.new.status"
-                    ng-options="business as business.name for business in user.business track by business._id">
+            <select id="business" class="form-control" ng-model="user.new.business"
+                    ng-options="business._id as business.name for business in business.results">
             </select>
         </div>
         <br>
