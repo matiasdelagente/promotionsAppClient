@@ -2,9 +2,11 @@ controllers.controller('BusinessCtrl',[
     '$scope',
     '$timeout',
     'BusinessSvc',
-    function($scope, $timeout, BusinessSvc){
+    'ZoneSvc',
+    function($scope, $timeout, BusinessSvc, ZoneSvc){
 
         $scope.business = {};
+        $scope.zone = {}
 
         /*BusinessSvc.get(function(response){
             $scope.business.results = response
@@ -46,7 +48,12 @@ controllers.controller('BusinessCtrl',[
         }
 
         BusinessSvc.get(function(response){
+            console.log(response);
             $scope.business.results = response
+        })
+
+        ZoneSvc.get(function(response){
+            $scope.zone.results = response
         })
 
     }

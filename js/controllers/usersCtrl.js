@@ -2,9 +2,11 @@ controllers.controller('UsersCtrl',[
     '$scope',
     '$timeout',
     'UserSvc',
-    function($scope, $timeout,UserSvc){
+    'BusinessSvc',
+    function($scope, $timeout,UserSvc,BusinessSvc){
 
         $scope.user = {}
+        $scope.business = {}
         $scope.form = {};
 
         $scope.form.show = function(){
@@ -20,12 +22,13 @@ controllers.controller('UsersCtrl',[
 
         $scope.user.save = function(user){
             if($scope.form.type == "create"){
-                //BusinessSvc.save(user);
+                UserSvc.save(user);
                 $scope.user.results.push(user);
                 $scope.form.state = !$scope.form.state
                 $scope.user.new = {}
             }
             else{
+                UserSvc.edit(user)
                 $scope.form.state = !$scope.form.state
                 $scope.user.results[$scope.user.index] = user
                 $scope.user.new = {}
@@ -44,5 +47,11 @@ controllers.controller('UsersCtrl',[
         UserSvc.get(function(response){
             $scope.user.results = response
         })
+
+        BusinessSvc.get(function(response){
+            $scope.business.results = response
+            console.log(response)
+        })
+
     }
 ])
