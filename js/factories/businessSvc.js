@@ -10,21 +10,24 @@ services.factory('BusinessSvc',[
           list : []
         };
 
-        business.save = function (business) {
+        business.save = function (business, callback) {
             $http.post(ENV.apiEndpoint+'/business', business)
                 .success(function(response){
-                });
+                    callback();
+                })
         }
 
-        business.delete = function(business) {
+        business.delete = function(business, callback) {
             $http.delete(ENV.apiEndpoint+'/business/'+business._id)
                 .success(function(response){
+                    callback();
                 });
         }
 
-        business.edit = function(business) {
+        business.edit = function(business, callback) {
             $http.put(ENV.apiEndpoint+'/business/'+business._id, business)
                 .success(function(response){
+                    callback();
                 });
         }
 

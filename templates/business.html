@@ -14,9 +14,10 @@
           <thead>
           <tr>
               <th>Nombre</th>
+              <th>Zona</th>
               <th>Direccion</th>
               <th>Telefono</th>
-              <th>Fecebook</th>
+              <th>Facebook</th>
               <th>Web</th>
               <th>Editar</th>
               <th>Eliminar</th>
@@ -25,10 +26,11 @@
           <tbody>
           <tr ng-repeat="p in business.results track by $index">
               <td>{{p.name}}</td>
-              <td>{{p.address}}</td>
-              <td>{{p.phone}}</td>
-              <td>{{p.facebook}}</td>
-              <td>{{p.web}}</td>
+              <td>{{p.zone.name}}</td>
+              <td>{{p.contact.address}}</td>
+              <td>{{p.contact.phone}}</td>
+              <td>{{p.contact.facebook}}</td>
+              <td>{{p.contact.web}}</td>
               <td><button ng-click='business.editForm($index)'>Editar</button></td>
               <td><button ng-click='business.delete($index)'>Eliminar</button></td>
           </tr>
