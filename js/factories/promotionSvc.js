@@ -12,24 +12,24 @@ services.factory('PromotionSvc',[
           list : []
         };
 
-        promotion.save = function (promotion) {
+        promotion.save = function (promotion,callback) {
             $http.post(ENV.apiEndpoint+'/promotion', promotion)
                 .success(function(response){
-                    console.log(promotion);
+                    callback()
                 });
         }
 
-        promotion.delete = function(promotion) {
-            $http.delete(ENV.apiEndpoint+'/promotion'+promotion._id)
+        promotion.delete = function(promotion,callback) {
+            $http.delete(ENV.apiEndpoint+'/promotion/'+promotion._id)
                 .success(function(response){
-                    console.log(response);
+                    callback();
                 });
         }
 
-        promotion.edit = function(promotion) {
-            $http.put(ENV.apiEndpoint+'/promotions'+promotion._id, promotion)
+        promotion.edit = function(promotion,callback) {
+            $http.put(ENV.apiEndpoint+'/promotion/'+promotion._id, promotion)
                 .success(function(response){
-                    console.log(response.result);
+                    callback();
                 });
         }
 

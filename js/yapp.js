@@ -37,7 +37,7 @@ yapp.config([
             })
             .when('/proms',{
                 templateUrl: 'templates/proms.html',
-                controller: 'PromsCtrl'
+                controller: 'PromotionCtrl'
             })
             .when('/business',{
                 templateUrl: 'templates/business.html',

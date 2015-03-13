@@ -13,6 +13,7 @@
           <thead>
           <tr>
               <th>Codigo</th>
+              <th>Nombre</th>
               <th>Tipo</th>
               <th>Vence</th>
               <th>Estado</th>
@@ -24,10 +25,11 @@
           <tbody>
           <tr ng-repeat="p in promotion.results" ng-class="{warning: p.status.name == 'Pendiente'}">
               <td>{{p.code}}</td>
+              <td>{{p.name}}</td>
               <td>{{p.type.name}}</td>
               <td>{{p.expire | date:'dd/MM/yy'}}</td>
               <td>{{p.status.name}}</td>
-              <td>{{p.date | date:'dd/MM/yy'}}</td>
+              <td>{{p.time | date:'dd/MM/yy'}}</td>
               <td><button ng-click='promotion.editForm($index)'>Editar</button></td>
               <td><button ng-click='promotion.delete($index)'>Eliminar</button></td>
           </tr>

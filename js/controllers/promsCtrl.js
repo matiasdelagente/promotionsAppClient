@@ -1,65 +1,63 @@
-controllers.controller('PromsCtrl',[
-        '$scope',
-        'PromotionSvc',
-        'PromTypesSvc',
-        'PromStatesSvc',
-        '$upload',
-        function($scope, PromotionSvc, PromTypesSvc, PromStatesSvc, $upload){
+controllers.controller('PromotionCtrl',[
+    '$scope',
+    '$timeout',
+    'PromotionSvc',
+    'PromStatesSvc',
+    'PromTypesSvc',
+    function($scope, $timeout, PromotionSvc, PromStatesSvc,PromTypesSvc){
 
-        $scope.promotion = {}
-        $scope.promotion.types = {}
-        $scope.promotion.states = {}
-        $scope.prom = {};
+        $scope.promotion = {};
+        $scope.zone = {};
+        $scope.promotion.types = {};
+        $scope.promotion.states = {};
         $scope.form = {};
 
-        $scope.upload2 = function (files) {
-            if (!files || files.length <= 0) {
-                return;
-            }
-
-            $scope.file = files[0];
-            console.log($scope.file)
-        };
-
-        $scope.sendFile = function(){
-                $scope.prom.file = $scope.file;
-                //console.log($scope.file)
-        }
-
         $scope.form.show = function(){
-                $scope.form.state = !$scope.form.state;
-                $scope.form.type = "create"
+            $scope.form.state = !$scope.form.state;
+            $scope.form.type = "create"
         };
 
         $scope.promotion.delete = function(index){
-                PromotionSvc.delete($scope.promotion.results[index]);
-                $scope.promotion.results.splice(index,1);
-                console.log(index);
+            PromotionSvc.delete($scope.promotion.results[index],function(){
+                PromotionSvc.get(function(response){
+                    $scope.promotion.results = response
+                })
+            });
         }
 
-        $scope.save = function(prom){
-                if($scope.form.type = "create"){
-                        PromotionSvc.save(prom);
-                        $scope.promotion.results.push(prom);
-                        $scope.form.state = !$scope.form.state
-                }
-                else{
-                        PromotionSvc.edit(prom);
-
-                }
-                $scope.prom = {};
-        }
-
-        $scope.edit = function(prom){
-                PromotionSvc.edit(prom);
-
+        $scope.promotion.save = function(promotion){
+            if($scope.form.type == "create"){
+                PromotionSvc.save(promotion,function(){
+                    PromotionSvc.get(function(response){
+                        $scope.promotion.results = response
+                    })
+                });
+                $scope.form.state = !$scope.form.state
+            }
+            else{
+                PromotionSvc.edit(promotion,function(){
+                    PromotionSvc.get(function(response){
+                        $scope.promotion.results = response
+                    })
+                })
+                $scope.form.state = !$scope.form.state
+                //$scope.promotion.results[$scope.promotion.index] = promotion
+                $scope.promotion.new = {};
+            }
         }
 
         $scope.promotion.editForm = function(index){
-                $scope.form.state = true;
-                $scope.form.type = "edit";
-                $scope.prom = $scope.promotion.results[index]
+            $scope.promotion.index = index
+            $scope.form.state = true;
+            $scope.form.type = "edit";
+            $scope.promotion.new = angular.copy($scope.promotion.results[index])
+            console.log($scope.promotion.new);
+            //$scope.promotion.new.zone = $scope.promotion.results[index].zone._id
         }
+
+        PromotionSvc.get(function(response){
+            $scope.promotion.results = response
+        })
 
         PromTypesSvc.get(function(response){
             $scope.promotion.types.results = response;
@@ -69,17 +67,16 @@ controllers.controller('PromsCtrl',[
             $scope.promotion.states.results = response;
         })
 
-        $scope.saveProm = function(prom){
-          PromotionSvc.save(prom);
-          $scope.promotion.results.push(prom);
-          $scope.form.state = !$scope.form.state
-          $scope.prom = {};
+        $scope.upload2 = function (files){
+            if (!files || files.length <= 0) {
+                return;
+            }
+            $scope.file = files[0];
+        };
 
+        $scope.sendFile = function(){
+            $scope.prom.file = $scope.file;
         }
-
-        PromotionSvc.get(function(response){
-          $scope.promotion.results = response
-        });
 
 
   }])
