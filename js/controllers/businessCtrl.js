@@ -37,18 +37,17 @@ controllers.controller('BusinessCtrl',[
                 $scope.business.results[$scope.business.index] = business
                 $scope.business.new = {};
             }
-
         }
 
         $scope.business.editForm = function(index){
             $scope.business.index = index
             $scope.form.state = true;
             $scope.form.type = "edit";
-            $scope.business.new = $scope.business.results[index]
+            $scope.business.new = angular.copy($scope.business.results[index])
+            if($scope.business.results[index].zone._id)$scope.business.new.zone = $scope.business.results[index].zone._id
         }
 
         BusinessSvc.get(function(response){
-            console.log(response);
             $scope.business.results = response
         })
 

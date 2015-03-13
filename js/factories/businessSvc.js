@@ -11,7 +11,6 @@ services.factory('BusinessSvc',[
         };
 
         business.save = function (business) {
-            console.log(business)
             $http.post(ENV.apiEndpoint+'/business', business)
                 .success(function(response){
                 });

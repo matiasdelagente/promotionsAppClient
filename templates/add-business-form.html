@@ -19,26 +19,26 @@
         <br>
 
         <div class="form-group">
-                <label for="address">Direccion</label>
-                <input type="text" class="form-control" id="address" ng-model="business.new.address">
+                <label for="address">Direcci&oacute;n</label>
+                <input type="text" class="form-control" id="address" ng-model="business.new.contact.address">
               </div>
               <br>
 
         <div class="form-group">
-            <label for="phone">Telefono</label>
-            <input type="number" class="form-control" id="phone" ng-model="business.new.phone">
+            <label for="phone">Tel&eacute;fono</label>
+            <input type="number" class="form-control" id="phone" ng-model="business.new.contact.phone">
         </div>
         <br>
 
         <div class="form-group">
             <label for="facebook">Facebook</label>
-            <input type="text" class="form-control" id="facebook" ng-model="business.new.facebook">
+            <input type="text" class="form-control" id="facebook" ng-model="business.new.contact.facebook">
           </div>
         <br>
 
         <div class="form-group">
             <label for="web">Web</label>
-            <input type="text" class="form-control" id="web" ng-model="business.new.web">
+            <input type="text" class="form-control" id="web" ng-model="business.new.contact.web">
         </div>
         <br>
 
@@ -61,13 +61,13 @@
     <span id='preview-name'>{{business.new.name}}</span>
     <div id='business-container' >
         <label>Direcci&oacute;n</label>
-        <span class="business-info" id='preview-address'>{{business.new.address}}</span>
+        <span class="business-info">{{business.new.contact.address}}</span>
         <label>Tel&eacute;fono</label>
-        <span  class="business-info" id='business-phone'>{{business.new.phone}}</span>
+        <span  class="business-info">{{business.new.contact.phone}}</span>
         <label>Facebook</label>
-        <span  class="business-info" id='business-facebook'>{{business.new.facebook}}</span>
+        <span  class="business-info">{{business.new.contact.facebook}}</span>
         <label>Web</label>
-        <span  class="business-info" id='business-web'>{{business.new.web}}</span>
+        <span  class="business-info">{{business.new.contact.web}}</span>
     </div>
 
     <img ng-src="{{file}}" ng-type=".jpeg"/>
