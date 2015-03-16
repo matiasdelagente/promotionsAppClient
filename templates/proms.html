@@ -1,22 +1,22 @@
-<button ng-click='form.show()'>
-        <p ng-if="!form.state">Agregar Promocion<p><p ng-if="form.state">Ocultar<p>
-</button>
-
-<div ng-if="form.state" ng-include="'./templates/add-promo-form.html'">
-
+<div class="row col-md-offset-5">
+    <button class="btn primary-button primary-font business-info" ng-click='form.show()'>
+            <p ng-if="!form.state">Agregar Promocion<p><p ng-if="form.state">Ocultar<p>
+    </button>
 </div>
 
 <div class="row">
-  <div class="col-md-10 col-md-offset-1 bg-success">
-      <h3>Promociones</h3>
+    <div ng-if="form.state" ng-include="'./templates/add-promo-form.html'"></div>
+</div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+      <label class="primary-font business-info">Promociones</label>
       <table class="table table-striped table-hover">
           <thead>
           <tr>
               <th>Codigo</th>
               <th>Nombre</th>
-              <th>Tipo</th>
               <th>Vence</th>
-              <th>Estado</th>
               <th>Fecha</th>
               <th>Editar</th>
               <th>Eliminar</th>
@@ -26,9 +26,7 @@
           <tr ng-repeat="p in promotion.results" ng-class="{warning: p.status.name == 'Pendiente'}">
               <td>{{p.code}}</td>
               <td>{{p.name}}</td>
-              <td>{{p.type.name}}</td>
               <td>{{p.expire | date:'dd/MM/yy'}}</td>
-              <td>{{p.status.name}}</td>
               <td>{{p.time | date:'dd/MM/yy'}}</td>
               <td><button ng-click='promotion.editForm($index)'>Editar</button></td>
               <td><button ng-click='promotion.delete($index)'>Eliminar</button></td>

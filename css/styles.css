@@ -149,3 +149,30 @@
     margin: 10px 50px 0px -10px;
     font-size: 30px;
 }
+
+/* Columnas */
+
+td {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: #DDDDDD;
+    text-align: center;
+}
+
+th {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
+    border-right-style: solid;
+    border-top-style: solid !important;
+    border-width: 1px 1px 0px 0px !important;
+    border-color: #DDDDDD !important;
+}
+
+td:last-child {
+    border-right-style: none;
+}
+
+th:last-child {
+    border-right-style: none;
+}
