@@ -4,8 +4,14 @@
 .margin-5{
     margin: 5px !important;
 }
-.font-size-42{
-    font-size: 42px;
+.margin-50{
+    margin-top: 50px !important;
+}
+.font-size-100{
+    font-size: 100px;
+    color: #808080;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
 }
 .center{
     text-align: center
@@ -19,10 +25,6 @@
     margin-top: 10px;
 }
 /* Estilos Promociones*/
-
-#promForm{
-
-}
 
 #promPreview{
     top: 100px;
@@ -126,4 +128,24 @@
 .primary-button {
     color: #6C5959;
     background-color: #0EE0DA;
+}
+
+.counter {
+    background-color: #F9F9F9;
+    color: #9BA1A4;
+    display: block;
+    border: 2px solid #E4E4E4;
+    padding: 25px;
+    border-radius: 5px;
+}
+
+.counter-button {
+    background-color: #F9F9F9;
+    color: #9BA1A4;
+    display: block;
+    border: 2px solid #E4E4E4;
+    padding: 16px;
+    border-radius: 5px;
+    margin: 10px 50px 0px -10px;
+    font-size: 30px;
 }

@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-md-4 margin-5 bg-danger">
+<div class="row col-md-12 col-md-offset-1">
+    <div class="col-md-5 margin-5 bg-danger">
         <h3>Reservas</h3>
         <table class="table table-striped table-hover">
             <thead>
@@ -18,7 +18,7 @@
             </tbody>
         </table>
     </div>
-    <div class="col-md-4 margin-5 bg-success">
+    <div class="col-md-5 margin-5 bg-success">
         <h3>Promociones</h3>
         <table class="table table-striped table-hover">
             <thead>
@@ -42,14 +42,12 @@
         </table>
     </div>
 </div>
-<div class="row">
-    <div class="col-sm-3 margin-5">
-        <div class="row bg-primary center">
-            <h3>Disponibilidad</h3>
-            <a href ng-click="availability.plus()" class="btn btn-success pull-left">
-                <span class="glyphicon glyphicon-plus"></span>
-            </a>
-                <span class="font-size-42" ng-click="availability.editAmount = true;" ng-if="!availability.editAmount">
+<div class="row col-md-12 col-md-offset-1 margin-50">
+    <div class="row col-sm-3 margin-5">
+        <label class="primary-font business-info">Disponibilidad</label>
+        <div class="row text-center">
+            <div class="col-md-8 center counter ">
+                <span class="font-size-100" ng-click="availability.editAmount = true;" ng-if="!availability.editAmount">
                     {{availability.results.amount}}
                 </span>
                 <span ng-if="availability.editAmount">
@@ -58,20 +56,35 @@
                            ng-blur="availability.changeAmount();availability.editAmount=false"
                            class="form-control input-amount" />
                 </span>
-            <a href ng-click="availability.minus()" class="btn btn-success pull-right"><span class="glyphicon glyphicon-minus"></span></a>
-        </div>
-        <div class="row bg-primary center margin-top-10">
-            <h3>Cuenta Regresiva</h3>
-            <a href ng-click="reserve.settings.plus()" class="btn btn-success pull-left">
-                <span class="glyphicon glyphicon-plus"></span>
-            </a>
-            <span class="font-size-42">
-                {{reserve.settings.results.timeOut | msToDate}}
-            </span>
-            <a href ng-click="reserve.settings.minus()" class="btn btn-success pull-right">
-                <span class="glyphicon glyphicon-minus"></span>
-            </a>
+            </div>
+            <div >
+                <a href ng-click="availability.plus()" class="counter-button pull-right"><span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+            <div>
+                <a href ng-click="availability.minus()" class="counter-button pull-right"><span class="glyphicon glyphicon-minus"></span></a>
+            </div>
+
         </div>
     </div>
-    <div class="col-sm-3 margin-5 bg-warning"></div>
+
+    <div class="row col-sm-3 col-sm-offset-2">
+        <label class="primary-font business-info">Cuenta Regresiva</label>
+        <div class="row text-center">
+            <div class="col-md-8 center counter ">
+                <span class="font-size-100" style="font-size: 50px" >
+                    {{reserve.settings.results.timeOut | msToDate}}
+                </span>
+
+            </div>
+            <div >
+                <a href ng-click="reserve.settings.plus()" class="counter-button pull-right"><span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+            <div>
+                <a href ng-click="reserve.settings.minus()" class="counter-button pull-right"><span class="glyphicon glyphicon-minus"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
