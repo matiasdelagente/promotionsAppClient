@@ -3,20 +3,18 @@ controllers.controller('BusinessCtrl',[
     '$timeout',
     'BusinessSvc',
     'ZoneSvc',
-    function($scope, $timeout, BusinessSvc, ZoneSvc){
+    'CategorySvc',
+    function($scope, $timeout, BusinessSvc, ZoneSvc, CategorySvc){
 
         $scope.business = {};
-        $scope.zone = {}
-
-        /*BusinessSvc.get(function(response){
-            $scope.business.results = response
-        });
-*/
+        $scope.zone = {};
+        $scope.category = {};
         $scope.form = {};
 
         $scope.form.show = function(){
             $scope.form.state = !$scope.form.state;
             $scope.form.type = "create"
+            $scope.business.new = {};
         };
 
         $scope.business.delete = function(index){
@@ -35,7 +33,6 @@ controllers.controller('BusinessCtrl',[
                     })
                 });
                 $scope.form.state = !$scope.form.state
-                $scope.business.new = {};
             }
             else{
                 BusinessSvc.edit(business,function(){
@@ -44,9 +41,8 @@ controllers.controller('BusinessCtrl',[
                     })
                 })
                 $scope.form.state = !$scope.form.state
-                //$scope.business.results[$scope.business.index] = business
-                $scope.business.new = {};
             }
+            $scope.business.new = {};
         }
 
         $scope.business.editForm = function(index){
@@ -55,6 +51,7 @@ controllers.controller('BusinessCtrl',[
             $scope.form.type = "edit";
             $scope.business.new = angular.copy($scope.business.results[index])
             $scope.business.new.zone = $scope.business.results[index].zone._id
+            $scope.business.new.category = $scope.business.results[index].category._id
         }
 
         BusinessSvc.get(function(response){
@@ -63,6 +60,10 @@ controllers.controller('BusinessCtrl',[
 
         ZoneSvc.get(function(response){
             $scope.zone.results = response
+        })
+
+        CategorySvc.get(function(response){
+            $scope.category.results = response
         })
 
     }

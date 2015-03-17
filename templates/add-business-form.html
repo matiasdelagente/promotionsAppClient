@@ -19,6 +19,14 @@
         <br>
 
         <div class="form-group">
+            <label for="category">Categoria</label>
+            <select id="category" class="form-control" ng-model="business.new.category"
+                    ng-options="category._id as category.name for category in category.results">
+            </select>
+        </div>
+        <br>
+
+        <div class="form-group">
                 <label for="address">Direcci&oacute;n</label>
                 <input type="text" class="form-control" id="address" ng-model="business.new.contact.address">
               </div>
