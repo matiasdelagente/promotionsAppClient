@@ -22,6 +22,7 @@ controllers.controller('DashCtrl',[
 
         PromotionSvc.get(function(response){
             $scope.promotion.results = response;
+            console.log($scope.promotion.results);
         });
 
         AvailabilitySvc.get(function(response){

@@ -4,17 +4,20 @@ controllers.controller('PromotionCtrl',[
     'PromotionSvc',
     'PromStatesSvc',
     'PromTypesSvc',
-    function($scope, $timeout, PromotionSvc, PromStatesSvc,PromTypesSvc){
+    'CategorySvc',
+    function($scope, $timeout, PromotionSvc, PromStatesSvc, PromTypesSvc, CategorySvc){
 
         $scope.promotion = {};
         $scope.zone = {};
         $scope.promotion.types = {};
         $scope.promotion.states = {};
+        $scope.promotion.category = {};
         $scope.form = {};
 
         $scope.form.show = function(){
             $scope.form.state = !$scope.form.state;
             $scope.form.type = "create"
+            $scope.promotion.new = {};
         };
 
         $scope.promotion.delete = function(index){
@@ -41,9 +44,8 @@ controllers.controller('PromotionCtrl',[
                     })
                 })
                 $scope.form.state = !$scope.form.state
-                //$scope.promotion.results[$scope.promotion.index] = promotion
-                $scope.promotion.new = {};
             }
+            $scope.promotion.new = {};
         }
 
         $scope.promotion.editForm = function(index){
@@ -51,8 +53,6 @@ controllers.controller('PromotionCtrl',[
             $scope.form.state = true;
             $scope.form.type = "edit";
             $scope.promotion.new = angular.copy($scope.promotion.results[index])
-            console.log($scope.promotion.new);
-            //$scope.promotion.new.zone = $scope.promotion.results[index].zone._id
         }
 
         PromotionSvc.get(function(response){
@@ -65,6 +65,10 @@ controllers.controller('PromotionCtrl',[
 
         PromStatesSvc.get(function(response){
             $scope.promotion.states.results = response;
+        })
+
+        CategorySvc.get(function(response){
+            $scope.promotion.category.results = response;
         })
 
         $scope.upload2 = function (files){
