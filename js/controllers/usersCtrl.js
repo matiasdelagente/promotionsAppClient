@@ -22,18 +22,25 @@ controllers.controller('UsersCtrl',[
 
         $scope.user.save = function(user){
             if($scope.form.type == "create"){
-                UserSvc.save(user);
+                UserSvc.save(user,function(){
+                    UserSvc.get(function(response){
+                        $scope.user.results = response
+                    })
+                });
                 $scope.user.results.push(user);
                 $scope.form.state = !$scope.form.state
-                $scope.user.new = {}
             }
             else{
-                UserSvc.edit(user)
+                UserSvc.edit(user, function(){
+                    UserSvc.get(function(response){
+                        $scope.user.results = response;
+                    })
+                })
                 $scope.form.state = !$scope.form.state
                 $scope.user.results[$scope.user.index] = user
-                $scope.user.new = {}
-            }
 
+            }
+            $scope.user.new = {}
         }
 
         $scope.user.editForm = function(index){
@@ -42,6 +49,7 @@ controllers.controller('UsersCtrl',[
             $scope.form.type = "edit";
             console.log($scope.user.new)
             $scope.user.new = angular.copy($scope.user.results[index]);
+            $scope.user.new.business = $scope.user.results[index].business._id;
         }
 
         UserSvc.get(function(response){
@@ -50,7 +58,7 @@ controllers.controller('UsersCtrl',[
 
         BusinessSvc.get(function(response){
             $scope.business.results = response
-            console.log(response)
+
         })
 
     }

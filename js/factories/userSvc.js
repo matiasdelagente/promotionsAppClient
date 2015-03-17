@@ -10,21 +10,24 @@ services.factory('UserSvc',[
           list : []
         };
 
-        user.save = function (user) {
+        user.save = function (user,callback) {
             $http.post(ENV.apiEndpoint+'/user', user)
                 .success(function(response){
+                    callback();
                 });
         }
 
-        user.delete = function(user) {
+        user.delete = function(user, callback) {
             $http.delete(ENV.apiEndpoint+'/user/'+user._id)
                 .success(function(response){
+                    callback();
                 });
         }
 
-        user.edit = function(user) {
+        user.edit = function(user, callback) {
             $http.put(ENV.apiEndpoint+'/user/'+user._id, user)
                 .success(function(response){
+                    callback();
                 });
         }
 
