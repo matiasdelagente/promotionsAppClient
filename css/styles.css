@@ -144,10 +144,16 @@
     color: #9BA1A4;
     display: block;
     border: 2px solid #E4E4E4;
-    padding: 16px;
+    padding: 10px;
     border-radius: 5px;
-    margin: 10px 50px 0px -10px;
-    font-size: 30px;
+    margin: 14px 35px -5px 0px;
+    font-size: 40px;
+}
+
+.navbar-brand img {
+    max-width: 160px;
+    margin-top: -38px;
+    margin-left: 145px;
 }
 
 /* Columnas */

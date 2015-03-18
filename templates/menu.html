@@ -1,17 +1,17 @@
 <div ng-if="menu.loged">
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                 <a class="navbar-brand" href="#/dash">Yapp!</a>
+                 <a class="navbar-brand" href="#/dash"><img src="./img/logo.png"></a>
             </div>
-            <ul class="nav navbar-nav" ng-if="!menu.isAdmin">
+            <ul class="nav navbar-nav navbar-right" ng-if="!menu.isAdmin">
                 <li><a href>Reservas</a></li>
                 <li><a href='#/proms'>Promociones</a></li>
                 <li><a href="#/configuraciones">Configuraciones</a></li>
                 <li><a href>Alertas</a></li>
                 <li><a href>Canje</a></li>
             </ul>
-            <ul class="nav navbar-nav" ng-if="menu.isAdmin">
+            <ul class="nav navbar-nav navbar-right" ng-if="menu.isAdmin">
                 <li><a href='#/business'>Negocios</a></li>
                 <li><a href>Promociones</a></li>
                 <li><a href='#/users'>Usuarios</a></li>
