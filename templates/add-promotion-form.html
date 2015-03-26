@@ -1,74 +1,81 @@
-<div class="row">
-  <div id='promForm' class="col-md-4 col-md-offset-2">
-    <h3>Agregar Promo<h3>
-      <form role="form" ng-submit="promotion.save(promotion.new)">
+<div class="modal fade">
+    <div class="modal-dialog modal-form">
+        <div class="modal-content">
 
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Agregar Negocio</h4>
+            </div>
 
-        <div class="form-group">
-          <label for="code">Codigo</label>
-          <input type="text" class="form-control" id="code" ng-model="promotion.new.code">
+            <div class="modal-body" id="promoForm">
+                <form role="form" ng-submit="close(form)">
+
+                    <div class="form-group">
+                      <label for="code">Codigo</label>
+                      <input type="text" class="form-control" id="code" ng-model="form.code">
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                      <label for="name">Nombre</label>
+                      <input type="text" class="form-control" id="name" ng-model="form.name">
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                      <label for="description">Descripcion</label>
+                      <input type="text" class="form-control" id="description" ng-model="form.description">
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                            <label for="type">Tipo</label>
+                            <select id="type" name="type" ng-model="form.type" class="form-control"
+                                    ng-options="type as type.name for type in promotion.types.results.data track by type._id" required>
+                            </select>
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <label for="expire">Vence</label>
+                        <input type="date" class="form-control" id="expire"  min="2014-10-01" max="2015-12-31" ng-model="form.expire">
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <label for="status">Estado</label>
+                        <select id="status" class="form-control" ng-model="form.status"
+                                ng-options="status as status.name for status in promotion.states.results.data track by status._id">
+                        </select>
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <label for="time">Fecha</label>
+                        <input type="date" class="form-control" id="time"  min="2014-10-01" max="2015-12-31" ng-model="form.time">
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <label>Imagen</label>
+                        <div class="btn" name="file" id="file" ng-file-select ng-file-change="upload($files)">Seleccionar una imagen</div>
+                        <button ng-click="sendFile()">UPLOAD</button>
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+
+                </form>
+            </div>
         </div>
-        <br>
 
-        <div class="form-group">
-          <label for="name">Nombre</label>
-          <input type="text" class="form-control" id="name" ng-model="promotion.new.name">
-        </div>
-        <br>
-
-        <div class="form-group">
-          <label for="description">Descripcion</label>
-          <input type="text" class="form-control" id="description" ng-model="promotion.new.description">
-        </div>
-        <br>
-
-        <div class="form-group">
-                <label for="type">Tipo</label>
-                <select id="type" name="type" ng-model="promotion.new.type" class="form-control"
-                        ng-options="type as type.name for type in promotion.types.results.data track by type._id" required>
-                </select>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <label for="expire">Vence</label>
-            <input type="date" class="form-control" id="expire"  min="2014-10-01" max="2015-12-31" ng-model="promotion.new.expire" ng-model-options="{timezone: 'UTC'}">
-        </div>
-        <br>
-
-        <div class="form-group">
-            <label for="status">Estado</label>
-            <select id="status" class="form-control" ng-model="promotion.new.status"
-                    ng-options="status as status.name for status in promotion.states.results.data track by status._id">
-            </select>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <label for="date">Fecha</label>
-            <input type="date" class="form-control" id="date"  min="2014-10-01" max="2015-12-31" ng-model="promotion.new.date" ng-model-options="{timezone: 'UTC'}">
-        </div>
-        <br>
-
-        <div class="form-group">
-            <label>Imagen</label>
-            <div class="btn" name="file" id="file" ng-file-select ng-file-change="upload($files)">Seleccionar una imagen</div>
-            <button ng-click="sendFile()">UPLOAD</button>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary" ng-if="form.type=='edit'">Editar Promocion</button>
-            <button type="submit" class="btn btn-primary" ng-if="form.type=='create'">Crear Promocion</button>
+        <div id='promPreview' class="col-md-3 col-md-offset-1">
+            <span id='name'>{{form.code}}</span>
+            <div id='prom-container-type' class='text-center'><span id='prom-type'>{{form.type.name}}</span></div>
+            <img ng-src="{{file}" ng-type=".jpeg"/>
         </div>
 
-      </form>
-  </div>
-
-  <div id='promPreview' class="col-md-3 col-md-offset-1">
-    <span id='name'>{{promotion.new.code}}</span>
-    <div id='prom-container-type' class='text-center'><span id='prom-type'>{{promotion.new.type.name}}</span></div>
-    <img ng-src="{{file}" ng-type=".jpeg"/>
-  </div>
-
+    </div>
 </div>

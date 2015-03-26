@@ -32,9 +32,10 @@
     width: 270px;
     background: url(../img/mobile_preview.png) 0 0 no-repeat #504851;
     background-size: contain;
-    position: relative;
+    position: absolute;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #fff
+    color: #fff;
+    margin-left: 110%;
 }
 
 #preview-name{

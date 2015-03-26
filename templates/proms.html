@@ -1,11 +1,7 @@
 <div class="row col-md-offset-5">
-    <button class="btn primary-button primary-font business-info" ng-click='form.show()'>
-            <p ng-if="!form.state">Agregar Promocion<p><p ng-if="form.state">Ocultar<p>
+    <button class="btn primary-button primary-font business-info" ng-click='showModal()'>
+            <p>Agregar Promocion<p>
     </button>
-</div>
-
-<div class="row">
-    <div ng-if="form.state" ng-include="'./templates/add-promo-form.html'"></div>
 </div>
 
 <div class="row">
@@ -28,7 +24,7 @@
               <td>{{p.name}}</td>
               <td>{{p.expire | date:'dd/MM/yy'}}</td>
               <td>{{p.time | date:'dd/MM/yy'}}</td>
-              <td><button ng-click='promotion.editForm($index)'>Editar</button></td>
+              <td><button ng-click='showModal($index)'>Editar</button></td>
               <td><button ng-click='promotion.delete($index)'>Eliminar</button></td>
           </tr>
           </tbody>

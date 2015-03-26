@@ -13,13 +13,26 @@ controllers.controller('PromotionCtrl',[
         $scope.promotion.types = {};
         $scope.promotion.states = {};
         $scope.promotion.category = {};
-        $scope.form = {};
 
-        $scope.form.show = function(){
-            $scope.form.state = !$scope.form.state;
-            $scope.form.type = "create"
-            $scope.promotion.new = {};
-        };
+        $scope.showModal = function(index){
+            if(index != null){
+                $scope.promotion.editForm(index)
+            }
+            ModalService.showModal({
+                templateUrl: "./templates/add-promotion-form.html",
+                controller: "ModalCtrl",
+                inputs: {
+                    object : $scope.promotion.new
+                }
+            }).then(function(modal){
+                modal.element.modal();
+                modal.close.then(function(result){
+                    if(result != "Cancel"){
+                        $scope.promotion.save(result);
+                     }
+                })
+            })
+        }
 
         $scope.promotion.delete = function(index){
             PromotionSvc.delete($scope.promotion.results[index],function(){
@@ -30,13 +43,12 @@ controllers.controller('PromotionCtrl',[
         }
 
         $scope.promotion.save = function(promotion){
-            if($scope.form.type == "create"){
+            if(!promotion._id){
                 PromotionSvc.save(promotion,function(){
                     PromotionSvc.get(function(response){
                         $scope.promotion.results = response
                     })
                 });
-                $scope.form.state = !$scope.form.state
             }
             else{
                 PromotionSvc.edit(promotion,function(){
@@ -44,16 +56,15 @@ controllers.controller('PromotionCtrl',[
                         $scope.promotion.results = response
                     })
                 })
-                $scope.form.state = !$scope.form.state
             }
             $scope.promotion.new = {};
         }
 
         $scope.promotion.editForm = function(index){
-            $scope.promotion.index = index
-            $scope.form.state = true;
-            $scope.form.type = "edit";
             $scope.promotion.new = angular.copy($scope.promotion.results[index])
+            //Abajo convertimos los Date de string a object para Angular
+            $scope.promotion.new.time = new Date($scope.promotion.results[index].time)
+            $scope.promotion.new.expire = new Date($scope.promotion.results[index].expire)
         }
 
         PromotionSvc.get(function(response){
