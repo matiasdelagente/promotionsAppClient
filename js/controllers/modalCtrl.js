@@ -25,8 +25,6 @@ controllers.controller('ModalCtrl',[
             $scope.category.results = response
         });
 
-        
-
         $scope.close = function(result){
             close(result, 300);
         }

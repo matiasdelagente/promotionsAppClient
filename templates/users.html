@@ -1,6 +1,6 @@
 <div class="row col-md-offset-5">
-    <button class="btn primary-button primary-font business-info" ng-click='form.show()'>
-            <p ng-if="!form.state">Agregar Usuario<p><p ng-if="form.state">Ocultar<p>
+    <button class="btn primary-button primary-font business-info" ng-click='showModal()'>
+            <p ng-if="!form.state">Agregar Usuario<p>
     </button>
 </div>
 
@@ -25,7 +25,7 @@
           <tr ng-repeat="p in user.results">
               <td>{{p.name}}</td>
               <td>{{p.business.name}}</td>
-              <td><button ng-click='user.editForm($index)'>Editar</button></td>
+              <td><button ng-click='showModal($index)'>Editar</button></td>
               <td><button ng-click='user.delete($index)'>Eliminar</button></td>
           </tr>
           </tbody>

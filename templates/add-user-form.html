@@ -1,35 +1,39 @@
-<div class="row">
-  <div id='userForm' class="col-md-4 col-md-offset-2">
-    <h3>Agregar Usuario<h3>
-      <form role="form" ng-submit="user.save(user.new)">
+<div class="modal fade">
+    <div class="modal-dialog modal-form">
+        <div class="modal-content">
 
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Agregar Usuario</h4>
+            </div>
 
-        <div class="form-group">
-          <label for="name">Nombre</label>
-          <input type="text" class="form-control" id="name" ng-model="user.new.name">
+            <div class="modal-body" id="userForm">
+                <form role="form" ng-submit="close(form)">
+
+                    <div class="form-group">
+                      <label for="name">Nombre</label>
+                      <input type="text" class="form-control" id="name" ng-model="form.name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" ng-model="form.password">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="business">Negocio</label>
+                        <select id="business" class="form-control" ng-model="form.business"
+                                ng-options="business._id as business.name for business in business.results">
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+
+                </form>
+            </div>
+
         </div>
-        <br>
-
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" ng-model="user.new.password">
-        </div>
-        <br>
-
-        <div class="form-group">
-            <label for="business">Negocio</label>
-            <select id="business" class="form-control" ng-model="user.new.business"
-                    ng-options="business._id as business.name for business in business.results">
-            </select>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary" ng-if="form.type=='edit'">Editar Negocio</button>
-            <button type="submit" class="btn btn-primary" ng-if="form.type=='create'">Crear Negocio</button>
-        </div>
-
-      </form>
-  </div>
-
+    </div>
 </div>
