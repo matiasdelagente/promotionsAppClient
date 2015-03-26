@@ -64,9 +64,10 @@
     width: 270px;
     background: url(../img/business-preview.png) 0 0 no-repeat #504851;
     background-size: contain;
-    position: relative;
+    position: absolute;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #fff;
+    margin-left: 110%;
 }
 
 #business-container{
@@ -154,6 +155,10 @@
     max-width: 160px;
     margin-top: -38px;
     margin-left: 145px;
+}
+
+.modal-form {
+    margin-left: 20% !important;
 }
 
 /* Columnas */

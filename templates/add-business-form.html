@@ -1,84 +1,83 @@
-<div class="row">
-  <div id='businessForm' class="col-md-4 col-md-offset-2">
-    <h3>Agregar Negocio<h3>
-      <form role="form" ng-submit="business.save(business.new)">
+<div class="modal fade">
+    <div class="modal-dialog modal-form">
+        <div class="modal-content">
 
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Agregar Negocio</h4>
+            </div>
 
-        <div class="form-group">
-          <label for="name">Nombre</label>
-          <input type="text" class="form-control" id="name" ng-model="business.new.name">
+        <div class="modal-body" id="businessForm">
+            <form role="form" ng-submit="close(form)">
+
+                <div class="form-group">
+                  <label for="name">Nombre</label>
+                  <input type="text" class="form-control" id="name" ng-model="form.name">
+                </div>
+
+                <div class="form-group">
+                    <label for="zone">Zona</label>
+                    <select id="zone" class="form-control" ng-model="form.zone"
+                            ng-options="zone._id as zone.name for zone in zone.results">
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Categoria</label>
+                    <select id="category" class="form-control" ng-model="form.category"
+                            ng-options="category._id as category.name for category in category.results">
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Direcci&oacute;n</label>
+                    <input type="text" class="form-control" id="address" ng-model="form.contact.address">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Tel&eacute;fono</label>
+                    <input type="number" class="form-control" id="phone" ng-model="form.contact.phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="facebook">Facebook</label>
+                    <input type="text" class="form-control" id="facebook" ng-model="form.contact.facebook">
+                  </div>
+
+                <div class="form-group">
+                    <label for="web">Web</label>
+                    <input type="text" class="form-control" id="web" ng-model="form.contact.web">
+                </div>
+
+                <div class="form-group">
+                    <label>Imagen</label>
+                    <div class="btn" name="file" id="file" ng-file-select ng-file-change="upload($files)">Seleccionar una imagen</div>
+                    <button ng-click="sendFile()">UPLOAD</button>
+                </div>
+                <br>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+
+            </form>
         </div>
-        <br>
 
-        <div class="form-group">
-            <label for="zone">Zona</label>
-            <select id="zone" class="form-control" ng-model="business.new.zone"
-                    ng-options="zone._id as zone.name for zone in zone.results">
-            </select>
         </div>
-        <br>
-
-        <div class="form-group">
-            <label for="category">Categoria</label>
-            <select id="category" class="form-control" ng-model="business.new.category"
-                    ng-options="category._id as category.name for category in category.results">
-            </select>
+        <div id='businessPreview' class="col-md-1">
+            <span id='preview-name'>{{form.name}}</span>
+            <div id='business-container' >
+                <label>Direcci&oacute;n</label>
+                <span class="business-info">{{form.contact.address}}</span>
+                <label>Tel&eacute;fono</label>
+                <span  class="business-info">{{form.contact.phone}}</span>
+                <label>Facebook</label>
+                <span  class="business-info">{{form.contact.facebook}}</span>
+                <label>Web</label>
+                <span  class="business-info">{{form.contact.web}}</span>
+            </div>
+            <img ng-src="{{file}}" ng-type=".jpeg"/>
         </div>
-        <br>
-
-        <div class="form-group">
-                <label for="address">Direcci&oacute;n</label>
-                <input type="text" class="form-control" id="address" ng-model="business.new.contact.address">
-              </div>
-              <br>
-
-        <div class="form-group">
-            <label for="phone">Tel&eacute;fono</label>
-            <input type="number" class="form-control" id="phone" ng-model="business.new.contact.phone">
-        </div>
-        <br>
-
-        <div class="form-group">
-            <label for="facebook">Facebook</label>
-            <input type="text" class="form-control" id="facebook" ng-model="business.new.contact.facebook">
-          </div>
-        <br>
-
-        <div class="form-group">
-            <label for="web">Web</label>
-            <input type="text" class="form-control" id="web" ng-model="business.new.contact.web">
-        </div>
-        <br>
-
-        <div class="form-group">
-            <label>Imagen</label>
-            <div class="btn" name="file" id="file" ng-file-select ng-file-change="upload($files)">Seleccionar una imagen</div>
-            <button ng-click="sendFile()">UPLOAD</button>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary" ng-if="form.type=='edit'">Editar Negocio</button>
-            <button type="submit" class="btn btn-primary" ng-if="form.type=='create'">Crear Negocio</button>
-        </div>
-
-      </form>
-  </div>
-
-  <div id='businessPreview' class="col-md-3 col-md-offset-1">
-    <span id='preview-name'>{{business.new.name}}</span>
-    <div id='business-container' >
-        <label>Direcci&oacute;n</label>
-        <span class="business-info">{{business.new.contact.address}}</span>
-        <label>Tel&eacute;fono</label>
-        <span  class="business-info">{{business.new.contact.phone}}</span>
-        <label>Facebook</label>
-        <span  class="business-info">{{business.new.contact.facebook}}</span>
-        <label>Web</label>
-        <span  class="business-info">{{business.new.contact.web}}</span>
     </div>
-
-    <img ng-src="{{file}}" ng-type=".jpeg"/>
-  </div>
 
 </div>

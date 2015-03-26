@@ -5,7 +5,8 @@ controllers.controller('PromotionCtrl',[
     'PromStatesSvc',
     'PromTypesSvc',
     'CategorySvc',
-    function($scope, $timeout, PromotionSvc, PromStatesSvc, PromTypesSvc, CategorySvc){
+    'ModalService',
+    function($scope, $timeout, PromotionSvc, PromStatesSvc, PromTypesSvc, CategorySvc, ModalService){
 
         $scope.promotion = {};
         $scope.zone = {};

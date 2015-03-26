@@ -4,18 +4,32 @@ controllers.controller('BusinessCtrl',[
     'BusinessSvc',
     'ZoneSvc',
     'CategorySvc',
-    function($scope, $timeout, BusinessSvc, ZoneSvc, CategorySvc){
+    'ModalService',
+    function($scope, $timeout, BusinessSvc, ZoneSvc, CategorySvc, ModalService){
 
         $scope.business = {};
         $scope.zone = {};
         $scope.category = {};
-        $scope.form = {};
 
-        $scope.form.show = function(){
-            $scope.form.state = !$scope.form.state;
-            $scope.form.type = "create"
-            $scope.business.new = {};
-        };
+        $scope.showModal = function(index){
+            if(index != null){
+                $scope.business.editForm(index)
+            }
+            ModalService.showModal({
+                templateUrl: "./templates/add-business-form.html",
+                controller: "ModalCtrl",
+                inputs: {
+                    object : $scope.business.new
+                }
+            }).then(function(modal){
+                modal.element.modal();
+                modal.close.then(function(result){
+                    if(result != "Cancel"){
+                        $scope.business.save(result);
+                     }
+                })
+            })
+        }
 
         $scope.business.delete = function(index){
             BusinessSvc.delete($scope.business.results[index],function(){
@@ -26,13 +40,12 @@ controllers.controller('BusinessCtrl',[
         }
 
         $scope.business.save = function(business){
-            if($scope.form.type == "create"){
+            if(!business._id){
                 BusinessSvc.save(business,function(){
                     BusinessSvc.get(function(response){
                         $scope.business.results = response
                     })
                 });
-                $scope.form.state = !$scope.form.state
             }
             else{
                 BusinessSvc.edit(business,function(){
@@ -40,15 +53,11 @@ controllers.controller('BusinessCtrl',[
                         $scope.business.results = response
                     })
                 })
-                $scope.form.state = !$scope.form.state
             }
             $scope.business.new = {};
         }
 
         $scope.business.editForm = function(index){
-            $scope.business.index = index
-            $scope.form.state = true;
-            $scope.form.type = "edit";
             $scope.business.new = angular.copy($scope.business.results[index])
             $scope.business.new.zone = $scope.business.results[index].zone._id
             $scope.business.new.category = $scope.business.results[index].category._id

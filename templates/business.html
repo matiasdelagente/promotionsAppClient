@@ -1,11 +1,7 @@
 <div class="row col-md-offset-5">
-    <button class="btn primary-button primary-font business-info" ng-click='form.show()'>
-            <p ng-if="!form.state">Agregar Negocio<p><p ng-if="form.state">Ocultar<p>
+    <button class="btn primary-button primary-font business-info" href ng-click='showModal()'>
+        <p>Agregar Negocio<p>
     </button>
-</div>
-
-<div class="row">
-    <div ng-if="form.state" ng-include="'./templates/add-business-form.html'"></div>
 </div>
 
 <div class="row">
@@ -32,7 +28,7 @@
               <td>{{p.contact.phone}}</td>
               <td>{{p.contact.facebook}}</td>
               <td>{{p.contact.web}}</td>
-              <td><button ng-click='business.editForm($index)'>Editar</button></td>
+              <td><button ng-click='showModal($index)'>Editar</button></td>
               <td><button ng-click='business.delete($index)'>Eliminar</button></td>
           </tr>
           </tbody>

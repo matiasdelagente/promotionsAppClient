@@ -6,6 +6,7 @@ var yapp = angular.module('Yapp',[
     'ngSanitize',
     'config',
     'angularFileUpload',
+    'angularModalService',
     'Yapp.controllers',
     'Yapp.services',
     'Yapp.filters'
