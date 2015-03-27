@@ -14,54 +14,45 @@
                       <label for="code">Codigo</label>
                       <input type="text" class="form-control" id="code" ng-model="form.code">
                     </div>
-                    <br>
 
                     <div class="form-group">
                       <label for="name">Nombre</label>
                       <input type="text" class="form-control" id="name" ng-model="form.name">
                     </div>
-                    <br>
+
+                    <div class="form-group">
+                        <label>Imagen</label>
+                        <input type="file" ng-file-select="" ng-model="picFile" name="file" accept="image/*" ng-file-change="generateThumb(picFile[0], $files)" required="">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="type">Tipo</label>
+                        <select id="type" name="type" ng-model="form.type" class="form-control"
+                                ng-options="type.name as type.name for type in promotion.types.results.data" required>
+                        </select>
+                    </div>
 
                     <div class="form-group">
                       <label for="description">Descripcion</label>
                       <input type="text" class="form-control" id="description" ng-model="form.description">
                     </div>
-                    <br>
-
-                    <div class="form-group">
-                            <label for="type">Tipo</label>
-                            <select id="type" name="type" ng-model="form.type" class="form-control"
-                                    ng-options="type as type.name for type in promotion.types.results.data track by type._id" required>
-                            </select>
-                    </div>
-                    <br>
 
                     <div class="form-group">
                         <label for="expire">Vence</label>
                         <input type="date" class="form-control" id="expire"  min="2014-10-01" max="2015-12-31" ng-model="form.expire">
                     </div>
-                    <br>
 
                     <div class="form-group">
                         <label for="status">Estado</label>
                         <select id="status" class="form-control" ng-model="form.status"
-                                ng-options="status as status.name for status in promotion.states.results.data track by status._id">
+                                ng-options="status.name as status.name for status in promotion.states.results.data">
                         </select>
                     </div>
-                    <br>
 
                     <div class="form-group">
                         <label for="time">Fecha</label>
                         <input type="date" class="form-control" id="time"  min="2014-10-01" max="2015-12-31" ng-model="form.time">
                     </div>
-                    <br>
-
-                    <div class="form-group">
-                        <label>Imagen</label>
-                        <div class="btn" name="file" id="file" ng-file-select ng-file-change="upload($files)">Seleccionar una imagen</div>
-                        <button ng-click="sendFile()">UPLOAD</button>
-                    </div>
-                    <br>
 
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Guardar</button>
@@ -72,9 +63,12 @@
         </div>
 
         <div id='promPreview' class="col-md-3 col-md-offset-1">
-            <span id='name'>{{form.code}}</span>
-            <div id='prom-container-type' class='text-center'><span id='prom-type'>{{form.type.name}}</span></div>
-            <img ng-src="{{file}" ng-type=".jpeg"/>
+            <span id='name'>{{form.name}}</span>
+            <div id='prom-container-type' class='text-center'>
+                <span id='prom-type'>{{form.type}}</span><br>
+                <span id='prom-description'>{{form.description}}</span>
+            </div>
+            <img ng-show="picFile[0].dataUrl != null" ng-src="{{picFile[0].dataUrl}}">
         </div>
 
     </div>

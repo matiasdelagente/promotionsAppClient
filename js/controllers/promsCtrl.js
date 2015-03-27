@@ -83,16 +83,15 @@ controllers.controller('PromotionCtrl',[
             $scope.promotion.category.results = response;
         })
 
-        $scope.upload2 = function (files){
-            if (!files || files.length <= 0) {
-                return;
-            }
-            $scope.file = files[0];
-        };
 
-        $scope.sendFile = function(){
-            $scope.prom.file = $scope.file;
-        }
+
+    	$scope.uploadPic = function(files) {
+    		$scope.formUpload = true;
+    		if (files != null) {
+    			generateThumbAndUpload(files[0])
+    		}
+    	};
+
 
 
   }])

@@ -27,7 +27,7 @@
 /* Estilos Promociones*/
 
 #promPreview{
-    top: 100px;
+    top: 200px;
     height: 480px;
     width: 270px;
     background: url(../img/mobile_preview.png) 0 0 no-repeat #504851;
@@ -38,6 +38,13 @@
     margin-left: 110%;
 }
 
+#promPreview img{
+    width: 268px;
+    height: 125px;
+    margin-top: -70px;
+    margin-left: -14px;
+}
+
 #preview-name{
     position: absolute;
     top: 27px;
@@ -46,7 +53,7 @@
 }
 
 #prom-container-type{
-    top: 206px;
+    top: 165px;
     left: 0px;
     height: 111px;
     position: relative;
@@ -55,7 +62,13 @@
 
 #prom-type{
     color: #2AFFA6;
-    font-size: 25px;
+    font-size: 35px;
+    font-weight: 600;
+}
+
+#prom-description{
+    color: #fff;
+    font-size: 16px;
     font-weight: 600;
 }
 
@@ -155,7 +168,7 @@
 .navbar-brand img {
     max-width: 160px;
     margin-top: -38px;
-    margin-left: 145px;
+    margin-left: 175px;
 }
 
 .modal-form {
