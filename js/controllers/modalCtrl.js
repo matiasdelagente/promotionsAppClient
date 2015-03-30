@@ -19,6 +19,8 @@ controllers.controller('ModalCtrl',[
         $scope.promotion.types = {};
         $scope.promotion.states = {};
 
+        if(object)$scope.form = {};
+
         $scope.form = angular.copy(object);
 
         BusinessSvc.get(function(response){

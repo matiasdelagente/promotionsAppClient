@@ -15,6 +15,7 @@ controllers.controller('PromotionCtrl',[
         $scope.promotion.category = {};
 
         $scope.showModal = function(index){
+            $scope.promotion.new = {};
             if(index != null){
                 $scope.promotion.editForm(index)
             }
@@ -35,11 +36,13 @@ controllers.controller('PromotionCtrl',[
         }
 
         $scope.promotion.delete = function(index){
-            PromotionSvc.delete($scope.promotion.results[index],function(){
-                PromotionSvc.get(function(response){
-                    $scope.promotion.results = response
-                })
-            });
+            if(confirm("¿Seguro que quiere eliminar la promocion?")){
+                PromotionSvc.delete($scope.promotion.results[index],function(){
+                    PromotionSvc.get(function(response){
+                        $scope.promotion.results = response
+                    })
+                });
+            }
         }
 
         $scope.promotion.save = function(promotion){
@@ -82,8 +85,6 @@ controllers.controller('PromotionCtrl',[
         CategorySvc.get(function(response){
             $scope.promotion.category.results = response;
         })
-
-
 
     	$scope.uploadPic = function(files) {
     		$scope.formUpload = true;

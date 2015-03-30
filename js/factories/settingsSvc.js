@@ -9,16 +9,11 @@ services.factory('SettingsSvc',[
         //namespace
         var settings = {};
 
-        settings.get = function (callback) {
-            $timeout(function(){
-                var response = {
-                    success:true,
-                    result:{
-                        amount:100
-                    }
-                };
-                callback(response.result);
-            },100);
+        settings.get = function (id, callback) {
+            $http.get(ENV.apiEndpoint+'/user')
+                .success(function(response){
+                    callback(response.result[0]);
+                });
         };
 
         return settings;

@@ -13,7 +13,6 @@
               <th>Codigo</th>
               <th>Nombre</th>
               <th>Vence</th>
-              <th>Fecha</th>
               <th>Tipo</th>
               <th>Estado</th>
               <th>Editar</th>
@@ -25,7 +24,6 @@
               <td>{{p.code}}</td>
               <td>{{p.name}}</td>
               <td>{{p.expire | date:'dd/MM/yy'}}</td>
-              <td>{{p.time | date:'dd/MM/yy'}}</td>
               <td>{{p.type}}</td>
               <td>{{p.status}}</td>
               <td><button ng-click='showModal($index)'>Editar</button></td>
