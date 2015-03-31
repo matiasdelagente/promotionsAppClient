@@ -12,12 +12,12 @@
 
                     <div class="form-group">
                       <label for="code">Codigo</label>
-                      <input type="text" class="form-control" id="code" ng-model="form.code">
+                      <input type="text" class="form-control" id="code" ng-model="form.code" required>
                     </div>
 
                     <div class="form-group">
                       <label for="name">Nombre</label>
-                      <input type="text" class="form-control" id="name" ng-model="form.name">
+                      <input type="text" class="form-control" id="name" ng-model="form.name" required>
                     </div>
 
                     <div class="form-group">
@@ -34,19 +34,19 @@
 
                     <div class="form-group">
                       <label for="description">Descripcion</label>
-                      <input type="text" class="form-control" id="description" ng-model="form.description">
+                      <input type="text" class="form-control" id="description" ng-model="form.description" required>
                     </div>
 
                     <div class="form-group">
                         <label for="status">Estado</label>
                         <select id="status" class="form-control" ng-model="form.status"
-                                ng-options="status.name as status.name for status in promotion.states.results.data">
+                                ng-options="status.name as status.name for status in promotion.states.results.data" required>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="time">Fecha</label>
-                        <input type="date" class="form-control" id="time"  min="2014-10-01" max="2015-12-31" filter:"date:'dd/MM/YYYY'" ng-model="form.time">
+                        <label for="time">Vence</label>
+                        <input type="date" class="form-control" id="expire"  min="2015-04-04" ng-model="form.expire" required>
                     </div>
 
                     <div class="form-group">
