@@ -12,18 +12,18 @@
 
                     <div class="form-group">
                       <label for="name">Nombre</label>
-                      <input type="text" class="form-control" id="name" ng-model="form.name">
+                      <input type="text" class="form-control" id="name" ng-model="form.name" required>
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" ng-model="form.password">
+                        <input type="password" class="form-control" id="password" ng-model="form.password" required>
                     </div>
 
                     <div class="form-group">
                         <label for="business">Negocio</label>
                         <select id="business" class="form-control" ng-model="form.business"
-                                ng-options="business._id as business.name for business in business.results">
+                                ng-options="business._id as business.name for business in business.results" required>
                         </select>
                     </div>
 
