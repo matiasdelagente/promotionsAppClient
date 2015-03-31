@@ -3,18 +3,37 @@ controllers.controller('DashCtrl',[
     'ReserveSvc',
     'PromotionSvc',
     'AvailabilitySvc',
-    function($scope, ReserveSvc, PromotionSvc, AvailabilitySvc){
+    'BusinessSvc',
+    function($scope, ReserveSvc, PromotionSvc, AvailabilitySvc, BusinessSvc){
 
         $scope.reserve = {};
         $scope.reserve.settings = {};
+
+        $scope.dash = {};
+        $scope.dash.loged = false;
+        $scope.dash.isAdmin = true;
 
         $scope.promotion = {};
         $scope.availability = {};
         $scope.availability.editAmount = false;
 
+        $scope.business = {};
+
+        $scope.$on('dash',function(ev,message){
+            $scope.dash.loged = message.show;
+            var user = AuthSvc.user;
+            if(user.role.name === 'Admin'){
+                $scope.dash.isAdmin = true;
+            }
+        });
+
+        BusinessSvc.get(function(response){
+            $scope.business.results = response
+            console.log($scope.business.results);
+        })
+
         ReserveSvc.get(function(response){
             $scope.reserve.results = response;
-            console.log($scope.reserve.results);
         });
 
         ReserveSvc.getSettings(function(response){
