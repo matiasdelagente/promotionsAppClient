@@ -4,7 +4,7 @@
 
             <div class="modal-header">
                 <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Agregar Negocio</h4>
+                <h4 class="modal-title">Agregar Promocion</h4>
             </div>
 
             <div class="modal-body" id="promoForm">
@@ -46,7 +46,7 @@
 
                     <div class="form-group">
                         <label for="time">Fecha</label>
-                        <input type="date" class="form-control" id="time"  min="2014-10-01" max="2015-12-31" ng-model="form.time">
+                        <input type="date" class="form-control" id="time"  min="2014-10-01" max="2015-12-31" filter:"date:'dd/MM/YYYY'" ng-model="form.time">
                     </div>
 
                     <div class="form-group">
