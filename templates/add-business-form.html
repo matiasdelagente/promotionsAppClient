@@ -6,27 +6,27 @@
 
         <div class="form-group">
           <label for="name">Nombre</label>
-          <input type="text" class="form-control" id="name" ng-model="business.new.name">
+          <input type="text" class="form-control" id="name" ng-model="business.new.name" required>
         </div>
         <br>
 
         <div class="form-group">
             <label for="zone">Zona</label>
             <select id="zone" class="form-control" ng-model="business.new.zone"
-                    ng-options="zone._id as zone.name for zone in zone.results">
+                    ng-options="zone._id as zone.name for zone in zone.results" required>
             </select>
         </div>
         <br>
 
         <div class="form-group">
                 <label for="address">Direcci&oacute;n</label>
-                <input type="text" class="form-control" id="address" ng-model="business.new.contact.address">
+                <input type="text" class="form-control" id="address" ng-model="business.new.contact.address" required>
               </div>
               <br>
 
         <div class="form-group">
             <label for="phone">Tel&eacute;fono</label>
-            <input type="number" class="form-control" id="phone" ng-model="business.new.contact.phone">
+            <input type="number" class="form-control" id="phone" ng-model="business.new.contact.phone" required>
         </div>
         <br>
 
