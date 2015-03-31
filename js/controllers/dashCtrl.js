@@ -4,14 +4,19 @@ controllers.controller('DashCtrl',[
     'PromotionSvc',
     'AvailabilitySvc',
     'BusinessSvc',
-    function($scope, ReserveSvc, PromotionSvc, AvailabilitySvc, BusinessSvc){
+    'PromStatesSvc',
+    function($scope, ReserveSvc, PromotionSvc, AvailabilitySvc, BusinessSvc, PromStatesSvc){
 
         $scope.reserve = {};
         $scope.reserve.settings = {};
+        $scope.reserve.states = {};
+
+        $scope.status = {};
+        $scope.status.setStatus = false
 
         $scope.dash = {};
         $scope.dash.loged = false;
-        $scope.dash.isAdmin = true;
+        $scope.dash.isAdmin = false;
 
         $scope.promotion = {};
         $scope.availability = {};
@@ -30,6 +35,10 @@ controllers.controller('DashCtrl',[
         BusinessSvc.get(function(response){
             $scope.business.results = response
             console.log($scope.business.results);
+        })
+
+        PromStatesSvc.get(function(response){
+            $scope.reserve.states.results = response;
         })
 
         ReserveSvc.get(function(response){
@@ -81,5 +90,15 @@ controllers.controller('DashCtrl',[
                 $scope.reserve.settings.results = response;
             });
         }
+
+        $scope.status.changeStatus = setStatusValue;
+
+        function setStatusValue(){
+            ReserveSvc.setSettings($scope.status.value, function(response){
+                $scope.status.value = response
+            })
+        }
+
+
     }
 ]);

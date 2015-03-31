@@ -37,10 +37,20 @@
             <tr ng-repeat="r in reserve.results" ng-class="{warning: r.status == 'Pendiente'}">
                 <td>{{r.amount}}</td>
                 <td>{{r.ends | date:'dd/MM'}}</td>
-                <td>{{r.status}}</td>
+                <td>
+                    <span ng-click="status.setStatus = true;" ng-if="!status.setStatus">{{r.status}}</span>
+                    <span ng-if="status.setStatus">
+                        <select id="status" class="form-control" ng-model="status.value"
+                                ng-options="status.name as status.name for status in reserve.states.results.data"
+                                ng-blur="status.changeStatus();status.setStatus=false"
+                                required>
+                        </select>
+                    </span>
+                </td>
             </tr>
             </tbody>
         </table>
+        {{status.setStatus}}
     </div>
     <div class="col-md-5 margin-5">
         <label class="primary-font business-info">Promociones</label>
