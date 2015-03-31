@@ -11,6 +11,13 @@ services.factory('ReserveSvc',[
         var reserve = {};
 
         reserve.get = function (callback) {
+            $http.get(ENV.apiEndpoint+'/reserves')
+                .success(function(response){
+                    callback(response.result);
+                });
+        };
+        /*
+        reserve.get = function (callback) {
             $timeout(function(){
                 var response = {
                     success:true,
@@ -28,7 +35,7 @@ services.factory('ReserveSvc',[
                 callback(response.result);
             },300);
         };
-
+        */
         reserve.getSettings = function (callback) {
             $timeout(function(){
                 var response = {

@@ -14,6 +14,7 @@ controllers.controller('DashCtrl',[
 
         ReserveSvc.get(function(response){
             $scope.reserve.results = response;
+            console.log($scope.reserve.results);
         });
 
         ReserveSvc.getSettings(function(response){
@@ -22,7 +23,6 @@ controllers.controller('DashCtrl',[
 
         PromotionSvc.get(function(response){
             $scope.promotion.results = response;
-            console.log($scope.promotion.results);
         });
 
         AvailabilitySvc.get(function(response){
@@ -45,7 +45,6 @@ controllers.controller('DashCtrl',[
         };
 
         $scope.availability.minus = function(){
-            console.log($scope.reserve.settings);
             $scope.availability.results.amount-=1;
             setAmountAvailability();
         };
