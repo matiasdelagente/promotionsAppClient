@@ -12,6 +12,7 @@ controllers.controller('BusinessCtrl',[
         $scope.category = {};
 
         $scope.showModal = function(index){
+            $scope.business.new = {};
             if(index != null){
                 $scope.business.editForm(index)
             }

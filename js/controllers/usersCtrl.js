@@ -11,6 +11,7 @@ controllers.controller('UsersCtrl',[
         $scope.form = {};
 
         $scope.showModal = function(index){
+            $scope.user.new = {};
             if(index != null){
                 $scope.user.editForm(index)
             }
