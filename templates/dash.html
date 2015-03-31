@@ -6,14 +6,14 @@
             <thead>
             <tr>
                 <th>Personas</th>
-                <th>Tiempo</th>
+                <th>Termina</th>
                 <th>Estado</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="r in reserve.results" ng-class="{warning: r.status == 'Pendiente'}">
                 <td>{{r.amount}}</td>
-                <td>{{r.timeOut | date:'hh:mm'}}</td>
+                <td>{{r.ends | date:'dd/MM'}}</td>
                 <td>{{r.status}}</td>
             </tr>
             </tbody>
