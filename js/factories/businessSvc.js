@@ -11,28 +11,28 @@ services.factory('BusinessSvc',[
         };
 
         business.save = function (business, callback) {
-            $http.post(ENV.apiEndpoint+'/business', business)
+            $http.post(ENV.http+'/business', business)
                 .success(function(response){
                     callback();
                 })
         }
 
         business.delete = function(business, callback) {
-            $http.delete(ENV.apiEndpoint+'/business/'+business._id)
+            $http.delete(ENV.http+'/business/'+business._id)
                 .success(function(response){
                     callback();
                 });
         }
 
         business.edit = function(business, callback) {
-            $http.put(ENV.apiEndpoint+'/business/'+business._id, business)
+            $http.put(ENV.http+'/business/'+business._id, business)
                 .success(function(response){
                     callback();
                 });
         }
 
         business.get = function (callback) {
-            $http.get(ENV.apiEndpoint+'/businesses')
+            $http.get(ENV.http+'/businesses')
                 .success(function(response){
                     callback(response.result);
                 });

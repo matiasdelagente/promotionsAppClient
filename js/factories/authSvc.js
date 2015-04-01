@@ -9,42 +9,113 @@ services.factory('AuthSvc',[
     'ENV',
 
     function (Base64, $http, $cookieStore, $rootScope, $timeout, ENV) {
-
+        $rootScope.globals = $rootScope.globals || {};
         var service = {};
-        service.user = ($cookieStore.get('globals'))?$cookieStore.get('globals').currentUser:{};
+        var token = (localStorage.getItem('token'))?localStorage.getItem('token'):null;
+        var user = null;
 
-        service.Login = function (email, password, callback) {
-            $timeout(function(){
-                //var user = {success:true,result:{_id:'stingId',email:'cmarrero01@gmail.com',role:{name:"Admin"}}};
-                var user = {success:true,result:{_id:'stingId',email:'business@gmail.com',role:{name:"Business"}}};
-                if(!user.success){
-                    user.message = 'Email or password is incorrect';
-                }
-                service.user = user.result;
-                callback(user.result);
-            },500);
-        };
-
-        service.SetCredentials = function (response, password) {
-            var authData = Base64.encode(response.email + ':' + password);
-            response.authdata = authData;
-
-            $rootScope.globals = {
-                currentUser: response
+        /**
+         * Login and set credentials
+         * @method login
+         * @param email
+         * @param password
+         * @param callback
+         */
+        service.login = function (email, password, callback) {
+            var data = {
+                email:email,
+                password:password
             };
-
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + authData; // jshint ignore:line
-            $cookieStore.put('globals', $rootScope.globals);
+            $http.post(ENV.http+'/login',data).success(function(response){
+                response.success = true;
+                if(response.code !== 200){
+                    response.success = false;
+                    response.message = "El email o password es incorrecto";
+                }
+                user = response.result.user;
+                service.setCredentials(response.result);
+                callback(response);
+            });
         };
 
-        service.ClearCredentials = function () {
-            $rootScope.globals = {};
-            $cookieStore.remove('globals');
-            $http.defaults.headers.common.Authorization = 'Basic ';
+        /**
+         * Make an automatic login when user refresh
+         * @method autoLogin
+         */
+        service.autoLogin = function(callback){
+            if(!token)return;
+            $http.post(ENV.http+'/autologin',{token:service.getCredentials()}).success(function(response){
+                response.success = true;
+                if(response.code !== 200){
+                    response.success = false;
+                }
+                user = response.result.user;
+                service.setCredentials(response.result);
+                callback(response);
+            });
         };
 
-        service.GetCredentials = function(){
-            return $cookieStore.get('globals');
+        /**
+         * Register and set credentials
+         * @method register
+         * @param email
+         * @param password
+         * @param callback
+         */
+        service.register = function (email, password, callback) {
+            var data = {
+                email:email,
+                password:password
+            };
+            $http.post(ENV.http+'/register',data).success(function(response){
+                response.success = true;
+                if(response.code !== 200){
+                    response.success = false;
+                    response.message = "El email o password es incorrecto";
+                }
+                user = response.result.user;
+                service.setCredentials(response.result);
+                callback(response);
+            });
+        };
+
+        /**
+         * Set Credentials
+         * @method setCredentials
+         * @param result
+         */
+        service.setCredentials = function (result) {
+            localStorage.setItem('token',result.token);
+            token = result.token;
+            $rootScope.globals.token = service.getCredentials();
+        };
+
+        /**
+         * Delete all credentials and users things of services
+         * @method clearCredentials
+         */
+        service.clearCredentials = function () {
+            localStorage.removeItem('token');
+            user = null;
+            token = null;
+        };
+
+        /**
+         * Get from auth service de credential token
+         * @method getCredentials
+         * @returns {*}
+         */
+        service.getCredentials = function(){
+            return token;
+        };
+
+        /**
+         * Get user object
+         * @method getUser
+         * @returns {*}
+         */
+        service.getUser = function(){
+            return user;
         };
 
         return service;

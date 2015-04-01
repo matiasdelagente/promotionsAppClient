@@ -28,12 +28,12 @@ controllers.controller('SettingsCtrl',[
                      }
                 })
             })
-        }
+        };
 
         $scope.settings.editForm = function(index){
             $scope.business.new = angular.copy($scope.settings.results[index])
-            $scope.business.new.zone = $scope.settings.results[index].zone._id
-            $scope.business.new.category = $scope.settings.results[index].category._id
+            $scope.business.new.zone = $scope.settings.results[index].zone._id;
+            $scope.business.new.category = $scope.settings.results[index].category._id;
         }
 
         $scope.settings.save = function(business){
@@ -41,20 +41,23 @@ controllers.controller('SettingsCtrl',[
                 BusinessSvc.get(function(response){
                     $scope.business.results = response
                 })
-            })
+            });
             $scope.business.new = {};
-        }
+        };
 
-        AuthSvc.user._id = '6';
-        SettingsSvc.get(AuthSvc.user._id,function(response){
-            $scope.settings.business = response.business;
-            $scope.settings.business.zone = response.business.zone._id
-            $scope.settings.business.category = response.business.category._id
+        //TODO: Revisar esto
+        SettingsSvc.get(AuthSvc.getUser()._id,function(response){
+            if(response.code !== 200){
+                return;
+            }
+            $scope.settings.business = response.result.business;
+            $scope.settings.business.zone = response.result.business.zone._id
+            $scope.settings.business.category = response.result.business.category._id
         });
 
         BusinessSvc.get(function(response){
             $scope.settings.results = response
-        })
+        });
 
         $scope.settings.edit = function(){
             $scope.loading = true;

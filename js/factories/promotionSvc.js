@@ -13,28 +13,28 @@ services.factory('PromotionSvc',[
         };
 
         promotion.save = function (promotion,callback) {
-            $http.post(ENV.apiEndpoint+'/promotion', promotion)
+            $http.post(ENV.http+'/promotion', promotion)
                 .success(function(response){
                     callback()
                 });
         }
 
         promotion.delete = function(promotion,callback) {
-            $http.delete(ENV.apiEndpoint+'/promotion/'+promotion._id)
+            $http.delete(ENV.http+'/promotion/'+promotion._id)
                 .success(function(response){
                     callback();
                 });
         }
 
         promotion.edit = function(promotion,callback) {
-            $http.put(ENV.apiEndpoint+'/promotion/'+promotion._id, promotion)
+            $http.put(ENV.http+'/promotion/'+promotion._id, promotion)
                 .success(function(response){
                     callback();
                 });
         }
 
         promotion.get = function (callback) {
-            $http.get(ENV.apiEndpoint+'/promotions')
+            $http.get(ENV.http+'/promotions')
                 .success(function(response){
                     callback(response.result);
                 });

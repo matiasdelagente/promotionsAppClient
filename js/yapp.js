@@ -57,14 +57,15 @@ yapp.config([
 yapp.run([
     '$rootScope',
     '$location',
-    '$cookieStore',
-    '$http',
-    function ($rootScope, $location, $cookieStore, $http) {
+    'AuthSvc',
+    function ($rootScope, $location, AuthSvc) {
 
-        $rootScope.globals = $cookieStore.get('globals') || {};
-        if ($rootScope.globals.currentUser) {
-            //$http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-        }
+        $rootScope.globals = $rootScope.globals || {};
+
+        AuthSvc.autoLogin(function(response){
+            if(!response.success)return;
+            $location.path('/dash');
+        });
 
         /**
          * Add here a list of URL that not need login
@@ -89,15 +90,16 @@ yapp.run([
             }
             return access;
         }
+
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             if($location.path() === ''){
                 $location.path('/');
                 return;
             }
-            if (!whiteUrl() && !$rootScope.globals.currentUser) {
+            if (!whiteUrl() && !$rootScope.globals.token) {
                 $location.path('/login');
             }
-            if (!whiteUrl() && $rootScope.globals.currentUser) {
+            if (!whiteUrl() && $rootScope.globals.token) {
                 $rootScope.$broadcast('menu', { 'show' : true });
             }
         });

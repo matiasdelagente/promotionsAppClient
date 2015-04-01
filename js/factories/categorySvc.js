@@ -11,14 +11,14 @@ services.factory('CategorySvc',[
         };
 
         category.save = function (category) {
-            $http.post(ENV.apiEndpoint+'/category', category)
+            $http.post(ENV.http+'/category', category)
                 .success(function(response){
                     console.log(category);
                 });
         }
 
         category.get = function (callback) {
-            $http.get(ENV.apiEndpoint+'/category')
+            $http.get(ENV.http+'/category')
                 .success(function(response){
                     callback(response.result);
                 });

@@ -10,9 +10,13 @@ services.factory('SettingsSvc',[
         var settings = {};
 
         settings.get = function (id, callback) {
-            $http.get(ENV.apiEndpoint+'/user')
+            $http.get(ENV.http+'/user')
                 .success(function(response){
-                    callback(response.result[0]);
+                    response.success = true;
+                    if(response.code !== 200){
+                        response.success = false;
+                    }
+                    callback(response);
                 });
         };
 

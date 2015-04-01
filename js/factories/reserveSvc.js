@@ -11,7 +11,7 @@ services.factory('ReserveSvc',[
         var reserve = {};
 
         reserve.get = function (callback) {
-            $http.get(ENV.apiEndpoint+'/reserves')
+            $http.get(ENV.http+'/reserves')
                 .success(function(response){
                     callback(response.result);
                 });

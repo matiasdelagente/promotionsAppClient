@@ -11,8 +11,8 @@ controllers.controller('MenuCtrl',[
 
         $scope.$on('menu',function(ev,message){
             $scope.menu.loged = message.show;
-            var user = AuthSvc.user;
-            if(user.role.name === 'Admin'){
+            var user = AuthSvc.getUser();
+            if(user && user.role && user.role.name === 'admin' && user.isAdmin){
                 $scope.menu.isAdmin = true;
             }
         });

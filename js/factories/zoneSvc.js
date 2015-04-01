@@ -11,14 +11,14 @@ services.factory('ZoneSvc',[
         };
 
         zone.save = function (zone) {
-            $http.post(ENV.apiEndpoint+'/zone', zone)
+            $http.post(ENV.http+'/zone', zone)
                 .success(function(response){
                     console.log(zone);
                 });
         }
 
         zone.get = function (callback) {
-            $http.get(ENV.apiEndpoint+'/zone')
+            $http.get(ENV.http+'/zone')
                 .success(function(response){
                     callback(response.result);
                 });
