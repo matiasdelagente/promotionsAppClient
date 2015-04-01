@@ -29,6 +29,10 @@ yapp.config([
                 templateUrl: 'templates/login.html',
                 controller: 'LoginCtrl'
             })
+            .when('/admin', {
+                templateUrl: 'templates/admin.html',
+                controller: 'AdminCtrl'
+            })
             .when('/dash', {
                 templateUrl: 'templates/dash.html',
                 controller: 'DashCtrl'

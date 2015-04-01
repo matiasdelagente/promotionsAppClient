@@ -12,7 +12,6 @@ controllers.controller('LoginCtrl',[
         $scope.login = function () {
             $scope.loading = true;
             AuthSvc.login($scope.email, $scope.password, function(response) {
-                console.log(response);
                 $scope.loading = false;
                 if(!response.success) {
                     $scope.error = response.message;

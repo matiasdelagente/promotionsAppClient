@@ -12,7 +12,7 @@ controllers.controller('MenuCtrl',[
         $scope.$on('menu',function(ev,message){
             $scope.menu.loged = message.show;
             var user = AuthSvc.getUser();
-            if(user && user.role && user.role.name === 'admin' && user.isAdmin){
+            if(user && user.role && user.role === 'admin' && user.isAdmin){
                 $scope.menu.isAdmin = true;
             }
         });

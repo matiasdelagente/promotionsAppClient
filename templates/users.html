@@ -9,14 +9,14 @@
 </div>
 
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
+  <div class="col-md-8 col-md-offset-2">
       <label class="primary-font business-info">Usuarios</label>
       <table class="table table-striped table-hover">
           <thead>
           <tr>
-              <th>nombre</th>
-              <th>negocio</th>
-
+              <th>Nombre</th>
+              <th>Negocio</th>
+              <th>E-mail</th>
               <th>Editar</th>
               <th>Eliminar</th>
           </tr>
@@ -25,6 +25,7 @@
           <tr ng-repeat="p in user.results">
               <td>{{p.name}}</td>
               <td>{{p.business.name}}</td>
+              <td>{{p.email}}</td>
               <td><button ng-click='showModal($index)'>Editar</button></td>
               <td><button ng-click='user.delete($index)'>Eliminar</button></td>
           </tr>

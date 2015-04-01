@@ -12,12 +12,12 @@
 
                 <div class="form-group">
                   <label for="name">Nombre</label>
-                  <input type="text" class="form-control" id="name" ng-model="business.new.name" required>
+                  <input type="text" class="form-control" id="name" ng-model="form.name" required>
                 </div>
 
                 <div class="form-group">
                     <label for="zone">Zona</label>
-                    <select id="zone" class="form-control" ng-model="business.new.zone"
+                    <select id="zone" class="form-control" ng-model="form.zone"
                             ng-options="zone._id as zone.name for zone in zone.results" required>
                     </select>
                 </div>
@@ -31,13 +31,13 @@
 
                 <div class="form-group">
                         <label for="address">Direcci&oacute;n</label>
-                        <input type="text" class="form-control" id="address" ng-model="business.new.contact.address" required>
+                        <input type="text" class="form-control" id="address" ng-model="form.contact.address" required>
                       </div>
                       <br>
 
                 <div class="form-group">
                     <label for="phone">Tel&eacute;fono</label>
-                    <input type="number" class="form-control" id="phone" ng-model="business.new.contact.phone" required>
+                    <input type="number" class="form-control" id="phone" ng-model="form.contact.phone" required>
                 </div>
 
                 <div class="form-group">

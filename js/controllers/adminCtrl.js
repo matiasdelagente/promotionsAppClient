@@ -1,4 +1,4 @@
-controllers.controller('DashCtrl',[
+controllers.controller('AdminCtrl',[
     '$scope',
     'ReserveSvc',
     'PromotionSvc',
@@ -32,7 +32,7 @@ controllers.controller('DashCtrl',[
                 console.log("dash del admin")
             }
         });
-        
+
         BusinessSvc.get(function(response){
             $scope.business.results = response
         })

@@ -66,6 +66,7 @@ controllers.controller('BusinessCtrl',[
 
         BusinessSvc.get(function(response){
             $scope.business.results = response
+            console.log($scope.business.results);
         })
 
         ZoneSvc.get(function(response){

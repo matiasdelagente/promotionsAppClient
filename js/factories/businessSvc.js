@@ -11,6 +11,7 @@ services.factory('BusinessSvc',[
         };
 
         business.save = function (business, callback) {
+            console.log(business);
             $http.post(ENV.http+'/business', business)
                 .success(function(response){
                     callback();
