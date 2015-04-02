@@ -32,11 +32,13 @@ controllers.controller('UsersCtrl',[
         }
 
         $scope.user.delete = function(index){
-            UserSvc.delete($scope.user.results[index],function(){
-                UserSvc.get(function(response){
-                    $scope.user.results = response
-                })
-            });
+            if(confirm("¿Seguro que quiere eliminar el usuario?")){
+                UserSvc.delete($scope.user.results[index],function(){
+                    UserSvc.get(function(response){
+                        $scope.user.results = response
+                    })
+                });
+            }
         }
 
         $scope.user.save = function(user){
@@ -59,7 +61,7 @@ controllers.controller('UsersCtrl',[
 
         $scope.user.editForm = function(index){
             $scope.user.new = angular.copy($scope.user.results[index]);
-            $scope.user.new.business = $scope.user.results[index].business._id;
+            if($scope.user.new.business) $scope.user.new.business = $scope.user.results[index].business._id;
         }
 
         UserSvc.get(function(response){

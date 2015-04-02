@@ -66,8 +66,8 @@ controllers.controller('PromotionCtrl',[
         $scope.promotion.editForm = function(index){
             $scope.promotion.new = angular.copy($scope.promotion.results[index])
             //Abajo convertimos los Date de string a object para Angular
-            $scope.promotion.new.time = new Date($scope.promotion.results[index].time)
-            $scope.promotion.new.expire = new Date($scope.promotion.results[index].expire)
+            if($scope.promotion.new.time) $scope.promotion.new.time = new Date($scope.promotion.results[index].time)
+            if($scope.promotion.new.expire) $scope.promotion.new.expire = new Date($scope.promotion.results[index].expire)
         }
 
         PromotionSvc.get(function(response){

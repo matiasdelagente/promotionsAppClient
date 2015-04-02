@@ -35,6 +35,7 @@ controllers.controller('AdminCtrl',[
 
         BusinessSvc.get(function(response){
             $scope.business.results = response
+            console.log($scope.business.results.length);
         })
 
         PromStatesSvc.get(function(response){

@@ -5,17 +5,17 @@
 </div>
 
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
+    <div ng-show="business.results.length == 0" class="col-md-8 col-md-offset-2"><label class="primary-font business-info">No hay usuarios cargados</label></div>
+    <div ng-hide="business.results.length == 0" class="col-md-8 col-md-offset-2">
       <label class="primary-font business-info">Negocios</label>
       <table class="table table-striped table-hover">
           <thead>
           <tr>
               <th>Nombre</th>
               <th>Zona</th>
+              <th>Categoria</th>
               <th>Direccion</th>
               <th>Telefono</th>
-              <th>Facebook</th>
-              <th>Web</th>
               <th>Editar</th>
               <th>Eliminar</th>
           </tr>
@@ -24,14 +24,13 @@
           <tr ng-repeat="p in business.results track by $index">
               <td>{{p.name}}</td>
               <td>{{p.zone.name}}</td>
+              <td>{{p.category.name}}</td>
               <td>{{p.contact.address}}</td>
               <td>{{p.contact.phone}}</td>
-              <td>{{p.contact.facebook}}</td>
-              <td>{{p.contact.web}}</td>
               <td><button ng-click='showModal($index)'>Editar</button></td>
               <td><button ng-click='business.delete($index)'>Eliminar</button></td>
           </tr>
           </tbody>
       </table>
-  </div>
+    </div>
 </div>

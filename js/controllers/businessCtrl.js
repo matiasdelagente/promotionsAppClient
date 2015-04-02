@@ -33,11 +33,13 @@ controllers.controller('BusinessCtrl',[
         }
 
         $scope.business.delete = function(index){
-            BusinessSvc.delete($scope.business.results[index],function(){
-                BusinessSvc.get(function(response){
-                    $scope.business.results = response
-                })
-            });
+            if(confirm("¿Seguro que quiere eliminar el negocio?")){
+                BusinessSvc.delete($scope.business.results[index],function(){
+                    BusinessSvc.get(function(response){
+                        $scope.business.results = response
+                    })
+                });
+            }
         }
 
         $scope.business.save = function(business){
@@ -60,8 +62,8 @@ controllers.controller('BusinessCtrl',[
 
         $scope.business.editForm = function(index){
             $scope.business.new = angular.copy($scope.business.results[index])
-            $scope.business.new.zone = $scope.business.results[index].zone._id
-            $scope.business.new.category = $scope.business.results[index].category._id
+            if($scope.business.new.zone) $scope.business.new.zone = $scope.business.results[index].zone._id
+            if($scope.business.new.category) $scope.business.new.category = $scope.business.results[index].category._id
         }
 
         BusinessSvc.get(function(response){
