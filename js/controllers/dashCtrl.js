@@ -24,15 +24,6 @@ controllers.controller('DashCtrl',[
 
         $scope.business = {};
 
-        $scope.$on('dash',function(ev,message){
-            $scope.dash.loged = message.show;
-            var user = AuthSvc.getUser();
-            if(user && user.role && user.role === 'admin' && user.isAdmin){
-                $scope.dash.isAdmin = true;
-                console.log("dash del admin")
-            }
-        });
-        
         BusinessSvc.get(function(response){
             $scope.business.results = response
         })
@@ -43,6 +34,7 @@ controllers.controller('DashCtrl',[
 
         ReserveSvc.get(function(response){
             $scope.reserve.results = response;
+            console.log($scope.reserve.results)
         });
 
         ReserveSvc.getSettings(function(response){
@@ -51,6 +43,7 @@ controllers.controller('DashCtrl',[
 
         PromotionSvc.get(function(response){
             $scope.promotion.results = response;
+            console.log($scope.promotion.results)
         });
 
         AvailabilitySvc.get(function(response){

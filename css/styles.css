@@ -73,7 +73,7 @@
 }
 
 #businessPreview{
-    top: 100px;
+    top: 150px;
     height: 480px;
     width: 270px;
     background: url(../img/business-preview.png) 0 0 no-repeat #504851;
@@ -82,6 +82,13 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #fff;
     margin-left: 110%;
+}
+
+#businessPreview img{
+    width: 268px;
+    height: 125px;
+    margin-top: -143px;
+    margin-left: -14px;
 }
 
 #business-container{
