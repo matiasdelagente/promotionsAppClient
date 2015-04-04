@@ -24,8 +24,8 @@
               <td>{{p.code}}</td>
               <td>{{p.name}}</td>
               <td>{{p.expire | date:'dd/MM/yy'}}</td>
-              <td>{{p.type}}</td>
-              <td>{{p.status}}</td>
+              <td>{{p.type.name}}</td>
+              <td>{{p.status.name}}</td>
               <td><button ng-click='showModal($index)'>Editar</button></td>
               <td><button ng-click='promotion.delete($index)'>Eliminar</button></td>
           </tr>

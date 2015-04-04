@@ -12,41 +12,41 @@
 
                     <div class="form-group">
                       <label for="code">Codigo</label>
-                      <input type="text" class="form-control" id="code" ng-model="form.code" required>
+                      <input type="text" class="form-control" id="code" ng-model="form.code" >
                     </div>
 
                     <div class="form-group">
                       <label for="name">Nombre</label>
-                      <input type="text" class="form-control" id="name" ng-model="form.name" required>
+                      <input type="text" class="form-control" id="name" ng-model="form.name" >
                     </div>
 
                     <div class="form-group">
                         <label>Imagen</label>
-                        <input type="file" ng-file-select="" ng-model="picFile" name="file" accept="image/*" ng-file-change="generateThumb(picFile[0], $files)" required="">
+                        <input type="file" ng-file-select="" ng-model="picFile" name="file" accept="image/*" ng-file-change="generateThumb(picFile[0], $files)">
                     </div>
 
                     <div class="form-group">
                         <label for="type">Tipo</label>
                         <select id="type" class="form-control" ng-model="form.type"
-                                ng-options="type.name as type.name for type in promotion.types.results.data">
+                                ng-options="type.name for type in promotion.types.results track by type.name">
                         </select>
                     </div>
 
                     <div class="form-group">
                       <label for="description">Descripcion</label>
-                      <input type="text" class="form-control" id="description" ng-model="form.description" reqiured>
+                      <input type="text" class="form-control" id="description" ng-model="form.description" >
                     </div>
 
                     <div class="form-group">
                         <label for="status">Estado</label>
                         <select id="status" class="form-control" ng-model="form.status"
-                                ng-options="status as status.name for status in promotion.states.results.data">
+                                ng-options="status.name for status in promStates.results track by status.name">
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label for="time">Vence</label>
-                        <input type="date" class="form-control" id="expire"  min="2015-04-04" ng-model="form.expire" required>
+                        <input type="date" class="form-control" id="expire"  min="2015-04-04" ng-model="form.expire" >
                     </div>
 
                     <div class="form-group">
@@ -60,7 +60,7 @@
         <div id='promPreview' class="col-md-3 col-md-offset-1">
             <span id='name'>{{form.name}}</span>
             <div id='prom-container-type' class='text-center'>
-                <span id='prom-type'>{{form.type}}</span><br>
+                <span id='prom-type'>{{form.type.name}}</span><br>
                 <span id='prom-description'>{{form.description}}</span>
             </div>
             <img ng-show="picFile[0].dataUrl != null" ng-src="{{picFile[0].dataUrl}}">

@@ -19,19 +19,19 @@ services.factory('PromStatesSvc', [
 
                         response.result = {
                                 data: [{
-                                        _id: 1,
+                                        _id: '1',
                                         name: 'Pendiente'
                                     },
                                     {
-                                        _id: 2,
+                                        _id: '2',
                                         name: 'Activa'
                                     },
                                     {
-                                        _id: 3,
+                                        _id: '3',
                                         name: 'Vencida'
                                     },
                                     {
-                                        _id: 4,
+                                        _id: '4',
                                         name: 'Otro'
                                     }
 

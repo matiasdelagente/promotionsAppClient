@@ -17,7 +17,7 @@ controllers.controller('ModalCtrl',[
         $scope.category = {};
         $scope.promotion = {};
         $scope.promotion.types = {};
-        $scope.promotion.states = {};
+        $scope.promStates = {};
 
         if(object)$scope.form = {};
 
@@ -36,20 +36,13 @@ controllers.controller('ModalCtrl',[
         });
 
         PromTypesSvc.get(function(response){
-            $scope.promotion.types.results = response;
+            $scope.promotion.types.results = response.data;
         });
 
         PromStatesSvc.get(function(response){
-            $scope.promotion.states.results = response;
+            $scope.promStates.results = response.data;
         })
 
-    	$scope.changeAngularVersion = function() {
-    		window.location.hash = $scope.angularVersion;
-    		window.location.reload(true);
-    	};
-
-    	$scope.angularVersion = window.location.hash.length > 1 ? (window.location.hash.indexOf('/') === 1 ?
-    			window.location.hash.substring(2): window.location.hash.substring(1)) : '1.2.20';
 
     	$scope.$watch('files', function(files) {
     		$scope.formUpload = false;
