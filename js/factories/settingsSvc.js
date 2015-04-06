@@ -10,7 +10,7 @@ services.factory('SettingsSvc',[
         var settings = {};
 
         settings.get = function (id, callback) {
-            $http.get(ENV.http+'/user')
+            $http.get(ENV.http+'/business/'+id)
                 .success(function(response){
                     response.success = true;
                     if(response.code !== 200){

@@ -21,6 +21,8 @@ controllers.controller('ModalCtrl',[
 
         if(object)$scope.form = {};
 
+        console.log(object)
+        
         $scope.form = angular.copy(object);
 
         BusinessSvc.get(function(response){

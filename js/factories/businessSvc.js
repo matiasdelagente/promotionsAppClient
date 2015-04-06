@@ -26,6 +26,7 @@ services.factory('BusinessSvc',[
         }
 
         business.edit = function(business, callback) {
+            console.log("editando")
             $http.put(ENV.http+'/business/'+business._id, business)
                 .success(function(response){
                     callback();
