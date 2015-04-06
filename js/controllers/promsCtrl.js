@@ -6,13 +6,16 @@ controllers.controller('PromotionCtrl',[
     'PromTypesSvc',
     'CategorySvc',
     'ModalService',
-    function($scope, $timeout, PromotionSvc, PromStatesSvc, PromTypesSvc, CategorySvc, ModalService){
+    'AuthSvc',
+    'SettingsSvc',
+    function($scope, $timeout, PromotionSvc, PromStatesSvc, PromTypesSvc, CategorySvc, ModalService, AuthSvc, SettingsSvc){
 
         $scope.promotion = {};
         $scope.zone = {};
         $scope.promotion.types = {};
         $scope.promotion.states = {};
         $scope.promotion.category = {};
+        $scope.business = {};
 
         $scope.showModal = function(index){
             $scope.promotion.new = {};
@@ -38,7 +41,7 @@ controllers.controller('PromotionCtrl',[
         $scope.promotion.delete = function(index){
             if(confirm("¿Seguro que quiere eliminar la promocion?")){
                 PromotionSvc.delete($scope.promotion.results[index],function(){
-                    PromotionSvc.get(function(response){
+                    PromotionSvc.get(AuthSvc.getUser().business,function(response){
                         $scope.promotion.results = response
                     })
                 });
@@ -46,17 +49,19 @@ controllers.controller('PromotionCtrl',[
         }
 
         $scope.promotion.save = function(promotion){
+            promotion.business = $scope.business._id;
+            promotion.category = $scope.business.category._id;
+            promotion.zone = $scope.business.zone._id;
             if(!promotion._id){
                 PromotionSvc.save(promotion,function(){
-                    PromotionSvc.get(function(response){
+                    PromotionSvc.get(AuthSvc.getUser().business,function(response){
                         $scope.promotion.results = response
                     })
                 });
             }
             else{
-                console.log(promotion);
                 PromotionSvc.edit(promotion,function(){
-                    PromotionSvc.get(function(response){
+                    PromotionSvc.get(AuthSvc.getUser().business,function(response){
                         $scope.promotion.results = response
                     })
                 })
@@ -70,7 +75,7 @@ controllers.controller('PromotionCtrl',[
             if($scope.promotion.new.expire) $scope.promotion.new.expire = new Date($scope.promotion.results[index].expire)
         }
 
-        PromotionSvc.get(function(response){
+        PromotionSvc.get(AuthSvc.getUser().business,function(response){
             $scope.promotion.results = response
         })
 
@@ -86,13 +91,18 @@ controllers.controller('PromotionCtrl',[
             $scope.promotion.category.results = response;
         })
 
+        SettingsSvc.get(AuthSvc.getUser().business,function(response){
+            if(response.code !== 200){
+                return;
+            }
+            $scope.business = response.result
+        });
+
     	$scope.uploadPic = function(files) {
     		$scope.formUpload = true;
     		if (files != null) {
     			generateThumbAndUpload(files[0])
     		}
     	};
-
-
 
   }])

@@ -5,7 +5,8 @@ controllers.controller('DashCtrl',[
     'AvailabilitySvc',
     'BusinessSvc',
     'PromStatesSvc',
-    function($scope, ReserveSvc, PromotionSvc, AvailabilitySvc, BusinessSvc, PromStatesSvc){
+    'AuthSvc',
+    function($scope, ReserveSvc, PromotionSvc, AvailabilitySvc, BusinessSvc, PromStatesSvc, AuthSvc){
 
         $scope.reserve = {};
         $scope.reserve.settings = {};
@@ -34,16 +35,14 @@ controllers.controller('DashCtrl',[
 
         ReserveSvc.get(function(response){
             $scope.reserve.results = response;
-            console.log($scope.reserve.results)
         });
 
         ReserveSvc.getSettings(function(response){
             $scope.reserve.settings.results = response;
         });
 
-        PromotionSvc.get(function(response){
+        PromotionSvc.get(AuthSvc.getUser().business,function(response){
             $scope.promotion.results = response;
-            console.log($scope.promotion.results)
         });
 
         AvailabilitySvc.get(function(response){

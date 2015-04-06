@@ -27,12 +27,12 @@ controllers.controller('SettingsCtrl',[
             })
         };
 
-            SettingsSvc.get(AuthSvc.getUser().business,function(response){
-                if(response.code !== 200){
-                    return;
-                }
-                $scope.business.new = response.result
-            });
+        SettingsSvc.get(AuthSvc.getUser().business,function(response){
+            if(response.code !== 200){
+                return;
+            }
+            $scope.business.new = response.result
+        });
 
         $scope.settings.save = function(business){
             BusinessSvc.edit(business,function(){
@@ -41,6 +41,8 @@ controllers.controller('SettingsCtrl',[
                         return;
                     }
                     $scope.business.new = response.result
+                    if(response.result.zone) $scope.business.new.zone = response.result.zone._id
+                    if(response.result.category) $scope.business.new.category = response.result.category._id
                 });
             });
             $scope.business.new = {};

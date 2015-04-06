@@ -33,11 +33,11 @@ services.factory('PromotionSvc',[
                 });
         }
 
-        promotion.get = function (callback) {
-            $http.get(ENV.http+'/promotions')
+        promotion.get = function (businessId,callback) {
+            $http.get(ENV.http+'/promotions', {params: {businessId: businessId} })
                 .success(function(response){
                     callback(response.result);
-                });
+            });
         };
 
         return promotion;
