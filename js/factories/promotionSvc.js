@@ -4,13 +4,24 @@ services.factory('PromotionSvc',[
     '$http',
     '$timeout',
     'ENV',
-
-    function ($http, $timeout, ENV) {
+    '$upload',
+    function ($http, $timeout, ENV, $upload) {
 
         //namespace
         var promotion = {
           list : []
         };
+
+        promotion.upload = function (promotion, callback) {
+            promotion.image.upload = $upload.upload({
+                url: ENV.http+'/upload',
+                method: 'POST',
+                file: promotion.image,
+            });
+            promotion.image.upload.success(function(response){
+                callback(response.result)
+            });
+        }
 
         promotion.save = function (promotion,callback) {
             $http.post(ENV.http+'/promotion', promotion)
@@ -34,7 +45,7 @@ services.factory('PromotionSvc',[
         }
 
         promotion.get = function (businessId,callback) {
-            $http.get(ENV.http+'/promotions', {params: {businessId: businessId} })
+            $http.get(ENV.http+'/promotions/'+ businessId)
                 .success(function(response){
                     callback(response.result);
             });

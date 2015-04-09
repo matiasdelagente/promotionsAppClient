@@ -51,7 +51,7 @@
 
                 <div class="form-group">
                     <label>Imagen</label>
-                    <input type="file" ng-file-select="" ng-model="picFile" name="file" accept="image/*" ng-file-change="generateThumb(picFile[0], $files)" required="">
+                    <input type="file" ng-file-select="" ng-model="form.image" name="file" accept="image/*" ng-file-change="generateThumb(form.image[0], $files)" required="">
                 </div>
 
                 <div class="form-group">
@@ -74,7 +74,8 @@
                 <label>Web</label>
                 <span  class="business-info">{{form.contact.web}}</span>
             </div>
-            <img ng-show="picFile[0].dataUrl != null" ng-src="{{picFile[0].dataUrl}}">
+            <img ng-if="!form.image" ng-src="{{form.bgimg}}">
+            <img ng-show="form.image[0].dataUrl != null" ng-src="{{form.image[0].dataUrl}}">
         </div>
     </div>
 

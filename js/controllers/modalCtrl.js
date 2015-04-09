@@ -10,7 +10,8 @@ controllers.controller('ModalCtrl',[
     '$upload',
     '$timeout',
     '$compile',
-    function($scope, close, BusinessSvc, ZoneSvc, CategorySvc, PromStatesSvc, PromTypesSvc, object, $upload, $timeout, compile){
+    'ENV',
+    function($scope, close, BusinessSvc, ZoneSvc, CategorySvc, PromStatesSvc, PromTypesSvc, object, $upload, $timeout, compile, ENV){
 
         $scope.business = {};
         $scope.zone = {};
@@ -21,9 +22,9 @@ controllers.controller('ModalCtrl',[
 
         if(object)$scope.form = {};
 
-        console.log(object)
-        
         $scope.form = angular.copy(object);
+
+        console.log($scope.form)
 
         BusinessSvc.get(function(response){
             $scope.business.results = response
@@ -68,63 +69,24 @@ controllers.controller('ModalCtrl',[
     	function generateThumbAndUpload(file) {
     		$scope.errorMsg = null;
     		$scope.generateThumb(file);
-    		if ($scope.howToSend === 1) {
-    			uploadUsing$upload(file);
-    		} else if ($scope.howToSend == 2) {
-    			uploadUsing$http(file);
-    		} else {
-    			uploadS3(file);
-    		}
+    		uploadUsing$upload(file);
     	}
 
     	$scope.generateThumb = function(file) {
     		if (file != null) {
     			if (file.type.indexOf('image') > -1) {
     				$timeout(function() {
-                        console.log("holis")
     					var fileReader = new FileReader();
     					fileReader.readAsDataURL(file);
     					fileReader.onload = function(e) {
     						$timeout(function() {
     							file.dataUrl = e.target.result;
-                                console.log(file.dataUrl)
     						});
     					}
     				});
     			}
     		}
     	};
-
-    	function uploadUsing$upload(file) {
-    		file.upload = $upload.upload({
-    			url: 'https://angular-file-upload-cors-srv.appspot.com/upload' + $scope.getReqParams(),
-    			method: 'POST',
-    			headers: {
-    				'my-header' : 'my-header-value'
-    			},
-    			fields: {username: $scope.username},
-    			file: file,
-    			fileFormDataName: 'myFile'
-    		});
-
-    		file.upload.then(function(response) {
-    			$timeout(function() {
-    				file.result = response.data;
-    			});
-    		}, function(response) {
-    			if (response.status > 0)
-    				$scope.errorMsg = response.status + ': ' + response.data;
-    		});
-
-    		file.upload.progress(function(evt) {
-    			// Math.min is to fix IE which reports 200% sometimes
-    			file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-    		});
-
-    		file.upload.xhr(function(xhr) {
-    			// xhr.upload.addEventListener('abort', function(){console.log('abort complete')}, false);
-    		});
-    	}
 
         $scope.close = function(result){
             close(result, 300);

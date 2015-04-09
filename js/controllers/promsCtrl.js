@@ -8,7 +8,8 @@ controllers.controller('PromotionCtrl',[
     'ModalService',
     'AuthSvc',
     'SettingsSvc',
-    function($scope, $timeout, PromotionSvc, PromStatesSvc, PromTypesSvc, CategorySvc, ModalService, AuthSvc, SettingsSvc){
+    'ENV',
+    function($scope, $timeout, PromotionSvc, PromStatesSvc, PromTypesSvc, CategorySvc, ModalService, AuthSvc, SettingsSvc, ENV){
 
         $scope.promotion = {};
         $scope.zone = {};
@@ -46,28 +47,34 @@ controllers.controller('PromotionCtrl',[
                     })
                 });
             }
-        }
+        };
 
         $scope.promotion.save = function(promotion){
             promotion.business = $scope.business._id;
             promotion.category = $scope.business.category._id;
             promotion.zone = $scope.business.zone._id;
             if(!promotion._id){
-                PromotionSvc.save(promotion,function(){
-                    PromotionSvc.get(AuthSvc.getUser().business,function(response){
-                        $scope.promotion.results = response
-                    })
+                PromotionSvc.upload(promotion,function(path){
+                    promotion.image = ENV.http + "/" + path;
+                    PromotionSvc.save(promotion,function(){
+                        PromotionSvc.get(AuthSvc.getUser().business,function(response){
+                            $scope.promotion.results = response;
+                        });
+                    });
                 });
             }
             else{
-                PromotionSvc.edit(promotion,function(){
-                    PromotionSvc.get(AuthSvc.getUser().business,function(response){
-                        $scope.promotion.results = response
-                    })
-                })
+                PromotionSvc.upload(promotion,function(path){
+                    promotion.image = ENV.http + "/" + path;
+                    PromotionSvc.edit(promotion,function(){
+                        PromotionSvc.get(AuthSvc.getUser().business,function(response){
+                            $scope.promotion.results = response;
+                        });
+                    });
+                }) ;
             }
             $scope.promotion.new = {};
-        }
+        };
 
         $scope.promotion.editForm = function(index){
             $scope.promotion.new = angular.copy($scope.promotion.results[index])
@@ -97,12 +104,5 @@ controllers.controller('PromotionCtrl',[
             }
             $scope.business = response.result
         });
-
-    	$scope.uploadPic = function(files) {
-    		$scope.formUpload = true;
-    		if (files != null) {
-    			generateThumbAndUpload(files[0])
-    		}
-    	};
 
   }])

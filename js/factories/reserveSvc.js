@@ -10,8 +10,8 @@ services.factory('ReserveSvc',[
         //namespace
         var reserve = {};
 
-        reserve.get = function (callback) {
-            $http.get(ENV.http+'/reserves')
+        reserve.get = function (businessId,callback) {
+            $http.get(ENV.http+'/reserves', {params: {businessId: businessId} })
                 .success(function(response){
                     callback(response.result);
                 });
@@ -48,7 +48,15 @@ services.factory('ReserveSvc',[
             },300);
         };
 
-        reserve.setSettings = function (settings,callback) {
+        reserve.setSettings = function(reserve,callback){
+            console.log(reserve);
+            $http.put(ENV.http+'/reserve/'+reserve._id, reserve)
+                .success(function(response){
+                    callback();
+                });
+        }
+
+        reserve.setSettings1 = function (settings,callback) {
             $timeout(function(){
                 var response = {
                     success:true,

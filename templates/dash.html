@@ -12,22 +12,21 @@
             <tbody>
             <tr ng-repeat="r in reserve.results" ng-class="{warning: r.status == 'Pendiente'}">
                 <td>{{r.amount}}</td>
-                <td>{{r.ends | date:'dd/MM'}}</td>
+                <td>{{r.ends | date:'HH:mm'}}</td>
                 <td>
-                    <span ng-click="status.setStatus = true;" ng-if="!status.setStatus">{{r.status}}</span>
+                    <span ng-click="status.setStatus = true;" ng-if="!status.setStatus">{{r.status.name}}</span>
                     <span ng-if="status.setStatus">
                         <select id="status" class="form-control" ng-model="status.value"
-                                ng-options="status.name as status.name for status in reserve.states.results.data"
-                                ng-blur="status.changeStatus();status.setStatus=false"
-                                required>
+                                ng-options="status.name for status in reserve.states.results.data track by status.name"
+                                ng-blur="reserve.new=r;status.changeStatus();status.setStatus=false" required>
                         </select>
                     </span>
                 </td>
             </tr>
             </tbody>
         </table>
-        {{status.setStatus}}
     </div>
+    {{status.value}}
     <div class="col-md-4">
         <label class="primary-font business-info">Promociones</label>
         <table class="table table-striped table-hover">

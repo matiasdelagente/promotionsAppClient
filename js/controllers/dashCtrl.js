@@ -10,7 +10,9 @@ controllers.controller('DashCtrl',[
 
         $scope.reserve = {};
         $scope.reserve.settings = {};
+        $scope.reserve.settings.results = {};
         $scope.reserve.states = {};
+        $scope.reserve.new = {}
 
         $scope.status = {};
         $scope.status.setStatus = false
@@ -21,32 +23,32 @@ controllers.controller('DashCtrl',[
 
         $scope.promotion = {};
         $scope.availability = {};
+        $scope.availability.results = {};
         $scope.availability.editAmount = false;
 
         $scope.business = {};
+        $scope.zone = {};
+        $scope.category = {};
 
-        BusinessSvc.get(function(response){
-            $scope.business.results = response
+        //Get business, availability, timeOut and properties id's properties of the business
+        BusinessSvc.getById(AuthSvc.getUser().business,function(response){
+            $scope.business = response
+            if(response.zone)$scope.business.zone = response.zone._id;
+            if(response.category)$scope.business.category = response.category._id;
+            $scope.reserve.settings.results.timeOut = response.reserveExpireTime;
+            $scope.availability.results.amount = response.dispo
         })
 
         PromStatesSvc.get(function(response){
             $scope.reserve.states.results = response;
         })
 
-        ReserveSvc.get(function(response){
+        ReserveSvc.get(AuthSvc.getUser().business,function(response){
             $scope.reserve.results = response;
-        });
-
-        ReserveSvc.getSettings(function(response){
-            $scope.reserve.settings.results = response;
         });
 
         PromotionSvc.get(AuthSvc.getUser().business,function(response){
             $scope.promotion.results = response;
-        });
-
-        AvailabilitySvc.get(function(response){
-            $scope.availability.results = response;
         });
 
         $scope.reserve.settings.plus = function(){
@@ -72,22 +74,25 @@ controllers.controller('DashCtrl',[
         $scope.availability.changeAmount = setAmountAvailability;
 
         function setAmountAvailability(){
-            AvailabilitySvc.setAmount($scope.availability.results.amount,function(response){
-                $scope.availability.results = response;
+            $scope.business.dispo = $scope.availability.results.amount;
+            BusinessSvc.edit($scope.business,function(response){
+                //$scope.availability.results = response;
             });
         }
 
         function setTimeOutReserve(){
-            ReserveSvc.setSettings($scope.reserve.settings.results,function(response){
-                $scope.reserve.settings.results = response;
+            $scope.business.reserveExpireTime = $scope.reserve.settings.results.timeOut;
+            BusinessSvc.edit($scope.business,function(response){
+                //$scope.reserve.settings.results = response;
             });
         }
 
         $scope.status.changeStatus = setStatusValue;
 
         function setStatusValue(){
-            ReserveSvc.setSettings($scope.status.value, function(response){
-                $scope.status.value = response
+            $scope.reserve.new.status = $scope.status.value
+            ReserveSvc.setSettings($scope.reserve.new, function(response){
+                //$scope.status.value = response
             })
         }
 

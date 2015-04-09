@@ -5,7 +5,8 @@ controllers.controller('BusinessCtrl',[
     'ZoneSvc',
     'CategorySvc',
     'ModalService',
-    function($scope, $timeout, BusinessSvc, ZoneSvc, CategorySvc, ModalService){
+    'ENV',
+    function($scope, $timeout, BusinessSvc, ZoneSvc, CategorySvc, ModalService, ENV){
 
         $scope.business = {};
         $scope.zone = {};
@@ -44,16 +45,22 @@ controllers.controller('BusinessCtrl',[
 
         $scope.business.save = function(business){
             if(!business._id){
-                BusinessSvc.save(business,function(){
-                    BusinessSvc.get(function(response){
-                        $scope.business.results = response
+                BusinessSvc.upload(business,function(path){
+                    business.image = ENV.http + "/" + path;
+                    BusinessSvc.save(business,function(){
+                        BusinessSvc.get(function(response){
+                            $scope.business.results = response
+                        })
                     })
                 });
             }
             else{
-                BusinessSvc.edit(business,function(){
-                    BusinessSvc.get(function(response){
-                        $scope.business.results = response
+                BusinessSvc.upload(business,function(path){
+                    business.image = ENV.http + "/" + path;
+                    BusinessSvc.edit(business,function(){
+                        BusinessSvc.get(function(response){
+                            $scope.business.results = response
+                        })
                     })
                 })
             }
@@ -68,7 +75,6 @@ controllers.controller('BusinessCtrl',[
 
         BusinessSvc.get(function(response){
             $scope.business.results = response
-            console.log($scope.business.results);
         })
 
         ZoneSvc.get(function(response){
