@@ -37,6 +37,7 @@ controllers.controller('DashCtrl',[
             if(response.category)$scope.business.category = response.category._id;
             $scope.reserve.settings.results.timeOut = response.reserveExpireTime;
             $scope.availability.results.amount = response.dispo
+            
         })
 
         PromStatesSvc.get(function(response){

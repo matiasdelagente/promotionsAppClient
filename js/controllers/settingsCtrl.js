@@ -5,7 +5,8 @@ controllers.controller('SettingsCtrl',[
     'ZoneSvc',
     'BusinessSvc',
     'ModalService',
-    function($scope, SettingsSvc, AuthSvc, ZoneSvc, BusinessSvc, ModalService){
+    'ENV',
+    function($scope, SettingsSvc, AuthSvc, ZoneSvc, BusinessSvc, ModalService, ENV){
         $scope.settings = {};
         $scope.zone = {};
         $scope.business = {};
@@ -32,32 +33,26 @@ controllers.controller('SettingsCtrl',[
                 return;
             }
             $scope.business.new = response.result
+            if(response.result.zone) $scope.business.new.zone = response.result.zone._id
+            if(response.result.category) $scope.business.new.category = response.result.category._id
         });
 
         $scope.settings.save = function(business){
-            BusinessSvc.edit(business,function(){
-                SettingsSvc.get(AuthSvc.getUser().business,function(response){
-                    if(response.code !== 200){
-                        return;
-                    }
-                    $scope.business.new = response.result
-                    if(response.result.zone) $scope.business.new.zone = response.result.zone._id
-                    if(response.result.category) $scope.business.new.category = response.result.category._id
+            BusinessSvc.upload(business,function(path){
+                business.image = ENV.http + "/" + path;
+                BusinessSvc.edit(business,function(){
+                    SettingsSvc.get(AuthSvc.getUser().business,function(response){
+                        if(response.code !== 200){
+                            return;
+                        }
+                        $scope.business.new = response.result
+                        if(response.result.zone) $scope.business.new.zone = response.result.zone._id
+                        if(response.result.category) $scope.business.new.category = response.result.category._id
+                    });
                 });
             });
             $scope.business.new = {};
         };
 
-        $scope.settings.edit = function(){
-            $scope.loading = true;
-            SettingsSvc.edit($scope.settings.business,function(response){
-                $scope.loading = false;
-                $scope.settings.business = response;
-            });
-        }
-
-        ZoneSvc.get(function(response){
-            $scope.zone.results = response
-        });
     }
 ]);
